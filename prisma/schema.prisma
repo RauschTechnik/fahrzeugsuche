@@ -1,0 +1,59 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Manufacturer {
+  id   Int    @id @default(autoincrement())
+  name String @unique
+
+  carModels CarModel[]
+}
+
+model CarModel {
+  id                         Int     @id @default(autoincrement())
+  manufacturerId             Int
+  name                       String
+  yearOfProductionSince      Int
+  yearOfProductionUntil      Int?
+  hybridOrElectricDisclaimer Boolean @default(false)
+
+  manufacturer    Manufacturer    @relation(fields: [manufacturerId], references: [id])
+  compatibilities Compatibility[]
+}
+
+// One row per (car model, wheelchair type, loading position) combination this
+// vehicle supports. loadingPosition mirrors the four options in the form:
+// "trunk_folded" | "trunk_unfolded" | "side_folded" | "side_unfolded".
+// wheelchairType mirrors the wheelchair type tabs:
+// "normal_wheelchair" | "compressible_wheelchair" | "scooter".
+model Compatibility {
+  id                             Int     @id @default(autoincrement())
+  carModelId                     Int
+  loadingPosition                String
+  // Specific product this row is for (e.g. "Ladeboy", "Ladeboy S2 mit
+  // Schwenkmodul") - several distinct products can share the same
+  // loadingPosition, so this is what tells them apart in the results.
+  productLabel                   String
+  // Which filter checkbox this row falls under - equipment variants (e.g. the
+  // telescoping-arm or swivel-module versions) share their base product's
+  // group so the filter list only shows distinct loading methods.
+  filterGroupLabel               String
+  wheelchairType                 String
+  isForHeavyWc                   Boolean
+  maxWcLength                    Int?
+  maxWcWidth                     Int?
+  maxWcHeight                    Int?
+  // Kept as free text (not a number) because the source spreadsheet sometimes
+  // encodes a range or footnote there, e.g. "2-3", "3*", "2(3)" - not always
+  // a single clean integer.
+  remainingSeats                 String
+  isAdditionalVerificationNeeded Boolean @default(false)
+  comment                        String?
+
+  carModel CarModel @relation(fields: [carModelId], references: [id])
+}

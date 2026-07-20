@@ -1,0 +1,96 @@
+.app {
+  @apply container mx-auto pb-20 px-5;
+}
+
+.app__header {
+  @apply md:flex items-center py-16 gap-3;
+}
+
+.app__empty_result {
+  @apply p-4 rounded-[20px] border border-gray-200 text-center shadow mb-8;
+}
+
+.app__form {
+  @apply shadow border border-gray-200 rounded-[20px];
+
+  &._hidden {
+    @apply hidden;
+  }
+}
+
+.app__form_vehicle,
+.app__form_wheelchair {
+  @apply pt-4 px-5 border-b border-gray-200;
+}
+
+.app__form_header {
+  @apply flex items-center justify-between mb-4;
+}
+
+.app__form_header_inner {
+  @apply flex items-center justify-between gap-1.5;
+}
+
+.app__form_title {
+  @apply text-lg;
+}
+
+.app__form_body {
+  @apply flex flex-col md:flex-row gap-5 mb-5 md:mb-8;
+}
+
+.app__form_optional {
+  @apply mb-5 flex items-center gap-1 font-bold text-gray-500;
+}
+
+.app__form_field {
+  @apply flex flex-col gap-2;
+}
+
+.app__form_tablist {
+  @apply w-full;
+}
+
+.app__form_tabtrigger {
+  @apply flex-grow;
+}
+
+.app__form_footer {
+  @apply p-8;
+}
+
+.app__result {
+  @apply flex flex-col-reverse md:flex-row gap-10;
+
+  &._hidden {
+    @apply hidden;
+  }
+}
+
+.app__result_params {
+  @apply rounded-[20px] border-gray-200 border shadow md:max-w-[240px] flex-shrink-0 w-full flex flex-col;
+}
+
+.app__result_params_header {
+  @apply flex items-center gap-1.5 pt-5 px-5;
+}
+
+.app__result_params_item {
+  @apply p-5 border-b border-gray-200 space-y-3;
+}
+
+.app__result_params_key {
+  @apply text-gray-500 font-normal;
+}
+
+.app__result_params_value {
+  @apply text-lg-alt break-words;
+}
+
+.app__result_params_footer {
+  @apply p-5 mt-auto;
+}
+
+.app__result_solutions {
+  @apply flex-grow;
+}

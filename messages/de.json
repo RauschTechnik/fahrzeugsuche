@@ -1,0 +1,114 @@
+{
+  "Validations": {
+    "length": {
+      "min": "Länge darf nicht weniger als {value} cm betragen",
+      "max": "Länge darf nicht mehr als {value} cm betragen",
+      "integer": "Länge muss eine ganze Zahl sein"
+    },
+    "width": {
+      "min": "Breite darf nicht weniger als {value} cm betragen",
+      "max": "Breite darf nicht mehr als {value} cm betragen",
+      "integer": "Breite muss eine ganze Zahl sein"
+    },
+    "width-unfolded": {
+      "min": "Breite ungefaltet darf nicht weniger als {value} cm betragen",
+      "max": "Breite ungefaltet darf nicht mehr als {value} cm betragen",
+      "integer": "Breite ungefaltet muss eine ganze Zahl sein"
+    },
+    "width-folded": {
+      "min": "Breite gefaltet darf nicht weniger als {value} cm betragen",
+      "max": "Breite gefaltet darf nicht mehr als {value} cm betragen",
+      "integer": "Breite gefaltet muss eine ganze Zahl sein"
+    },
+    "height": {
+      "min": "Höhe darf nicht weniger als {value} cm betragen",
+      "max": "Höhe darf nicht mehr als {value} cm betragen",
+      "integer": "Höhe muss eine ganze Zahl sein"
+    }
+  },
+  "Wizard": {
+    "title": "Fahrzeugsuche",
+    "back-to-results": "Zurück zu den Ergebnissen",
+    "no-matches": {
+      "title": "Keine passenden Fahrzeuge gefunden",
+      "description": "Bitte versuchen Sie, die eingegebenen Parameter anzupassen."
+    }
+  },
+  "WheelchairType": {
+    "regular": "Regulär",
+    "compressible": "Komprimierbar",
+    "scooter": "Scooter"
+  },
+  "LoadingSpace": {
+    "trunk": "Im Kofferraum",
+    "side": "Hinter dem Fahrersitz"
+  },
+  "WheelchairWeight": {
+    "less-55": "< 55 kg",
+    "greater-55": "> 55 kg"
+  },
+  "CompatibilityForm": {
+    "title-loading-space": "Verladung",
+    "title-wheelchair": "Rollstuhl",
+    "type": "Typ",
+    "weight": "Eigengewicht Rollstuhl",
+    "length": "Länge, cm",
+    "length-description": "Falls die Rollstuhlfußstütze abnehmbar ist und Sie ohne Fußstützen verladen möchten, geben Sie bitte die Länge des Rollstuhls ohne Fußstütze an.",
+    "width": "Breite, cm",
+    "scooter-width-hint": "Maximal 82cm Breite möglich",
+    "width-unfolded": "Breite ungefaltet, cm",
+    "width-unfolded-description": "Die ungefaltete Breite ist nur von Belang, wenn Sie Ihren Rollstuhl ungefaltet verladen möchten. Falls Sie nur gefaltet verladen möchten, können Sie dort einfach 20 cm eintragen.",
+    "width-folded": "Breite gefaltet, cm",
+    "width-folded-description": "Standardmäßig gilt bei uns ein Faltmaß von 35 cm. Falls Sie keine Verlademöglichkeiten sehen, tippen Sie hier 35 cm ein – wir können dann gemeinsam besprechen, wie wir das Faltmaß Ihres Rollstuhls reduzieren können bzw. ob es auch mit einem höheren Faltmaß funktioniert.",
+    "height": "Höhe, cm",
+    "scooter-height-hint": "Je nach Fahrzeug zwischen 78cm und 110cm Höhe möglich",
+    "loading-space-locked-hint": "Bei diesem Rollstuhltyp ist nur die Verladung im Kofferraum möglich.",
+    "submit": "Passende Fahrzeuge finden"
+  },
+  "WheelchairTypesExplanationDialog": {
+    "title": "Erklärung der Rollstuhltypen",
+    "done": "Fertig",
+    "regular": {
+      "name": "Regulär",
+      "description": "Kreuzrahmen-Faltrollstühle"
+    },
+    "compressible": {
+      "name": "Komprimierbar",
+      "description": "Tragbare Rollstühle oder leichte elektrische Rollstühle mit Faltmöglichkeit von oben nach unten"
+    },
+    "scooter": {
+      "name": "Scooter",
+      "description": "Mobilitätsscooter und schwere elektrische Rollstühle"
+    }
+  },
+  "CompatibleSolutionsParams": {
+    "loading-space": "Verladung",
+    "loading-space-values": {
+      "trunk": "Im Kofferraum",
+      "side": "Hinter dem Fahrersitz"
+    },
+    "wheelchair": "Rollstuhl",
+    "length": "Länge",
+    "width": "Breite",
+    "width-unfolded": "Breite ungefaltet",
+    "width-folded": "Breite gefaltet",
+    "height": "Höhe",
+    "weight": "Eigengewicht Rollstuhl",
+    "less-55": "Weniger als 55 kg",
+    "greater-55": "Mehr als 55 kg",
+    "modify-parameters": "Parameter ändern",
+    "centimetre": "cm"
+  },
+  "VehicleMatches": {
+    "filter-title": "Nach Verlademöglichkeit filtern",
+    "seats-filter-title": "Nach verbleibenden Sitzen filtern",
+    "seats-count": "{count, plural, =1 {# Sitz} other {# Sitze}}",
+    "matches-found": "{count, plural, =1 {# Fahrzeug} other {# Fahrzeuge}} gefunden",
+    "model-today": "heute",
+    "remaining-seats": "Verbleibende Sitze",
+    "compatibility": "Kompatibilität",
+    "check-with-support": "Mit dem Support überprüfen",
+    "not-applicable": "Nicht zutreffend",
+    "loading-capacity-disclaimer": "Einschränkung: Bei Elektro- oder Hybridfahrzeugen kann der Batteriespeicher die Ladefähigkeit beeinträchtigen. Bitte wenden Sie sich an den Support."
+  }
+}
