@@ -74,6 +74,15 @@ export function CompatibilityForm({ isCheckDisabled, onCheckCompatibility, ...pr
     }
   }, [isLoadingSpaceLocked]);
 
+  // Weight only matters for scooters - regular and compressible wheelchairs are
+  // always treated as light. Reset the weight so a stale "> 55 kg" selection
+  // from a previous scooter search doesn't silently carry over.
+  useEffect(() => {
+    if (!fieldsVisibilityStates.isScooter) {
+      setActiveWheelchairWeightType(WheelchairWeightType.Less55);
+    }
+  }, [fieldsVisibilityStates.isScooter]);
+
   const fieldsWidthClassName = useMemo(() => {
     return cn(fieldsVisibilityStates.isRegular && fieldsVisibilityStates.isLight ? 'md:w-1/4' : 'md:w-1/3');
   }, [fieldsVisibilityStates]);
@@ -139,10 +148,7 @@ export function CompatibilityForm({ isCheckDisabled, onCheckCompatibility, ...pr
       width_folded:
         fieldsVisibilityStates.isRegular && fieldsVisibilityStates.isLight ? values.width_folded : undefined,
       height: values.height,
-      is_heavy_wc:
-        fieldsVisibilityStates.isRegular || fieldsVisibilityStates.isCompressible
-          ? fieldsVisibilityStates.isHeavy
-          : true
+      is_heavy_wc: fieldsVisibilityStates.isScooter ? fieldsVisibilityStates.isHeavy : false
     });
 
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -182,7 +188,7 @@ export function CompatibilityForm({ isCheckDisabled, onCheckCompatibility, ...pr
             </div>
 
             <div className={cn([styles.app__form_field, 'md:w-1/2'])}>
-              {activeWheelchairType !== WheelchairType.Scooter && (
+              {fieldsVisibilityStates.isScooter && (
                 <>
                   <Label>{t('CompatibilityForm.weight')}</Label>
                   <Tabs
