@@ -137,9 +137,17 @@ function collectRowsFromSheet(workbook: ReturnType<typeof read>, config: SheetCo
     if (/ oder | o\. /.test(modelName)) continue;
 
     const comment = String(row[COL.commentDe] ?? '').trim() || null;
+    const maxWcLength = toNullableInt(row[COL.maxWcLength]);
+    const maxWcHeight = toNullableInt(row[COL.maxWcHeight]);
     const maxWcWidth = config.useUnfoldedFigures
       ? toNullableInt(row[COL.maxUnfoldedWcWidth])
       : toNullableInt(row[COL.maxWcWidth]);
+
+    // "Ladeboy Klapprollstuhl" (LB-SH-MS) genuinely never has dimensions - any
+    // compressible wheelchair fits. Every other product without any measurement
+    // at all just hasn't been measured yet, regardless of how that's worded in
+    // the internal note (typos and phrasing vary too much to text-match reliably).
+    if (rowProductCode !== 'LB-SH-MS' && maxWcLength == null && maxWcHeight == null && maxWcWidth == null) continue;
 
     const productLabel = PRODUCT_LABELS[rowProductCode] ?? rowProductCode;
     const filterGroupLabel = FILTER_GROUP_LABELS[rowProductCode] ?? productLabel;
@@ -164,9 +172,9 @@ function collectRowsFromSheet(workbook: ReturnType<typeof read>, config: SheetCo
         filterGroupLabel,
         wheelchairType,
         isForHeavyWc: config.isForHeavyWc,
-        maxWcLength: toNullableInt(row[COL.maxWcLength]),
+        maxWcLength,
         maxWcWidth,
-        maxWcHeight: toNullableInt(row[COL.maxWcHeight]),
+        maxWcHeight,
         remainingSeats: String(row[COL.rawSeats] ?? '').trim(),
         isAdditionalVerificationNeeded: toBoolean(row[COL.isAdditionalVerificationNeeded]),
         comment

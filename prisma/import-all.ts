@@ -141,8 +141,14 @@ async function importSheet(workbook: ReturnType<typeof read>, config: SheetConfi
     }
 
     const comment = String(row[COL.commentDe] ?? '').trim() || null;
+    const maxWcLength = toNullableInt(row[COL.maxWcLength]);
+    const maxWcHeight = toNullableInt(row[COL.maxWcHeight]);
     const maxWcWidth = config.useUnfoldedFigures ? toNullableInt(row[COL.maxUnfoldedWcWidth]) : toNullableInt(row[COL.maxWcWidth]);
     const remainingSeats = String(row[COL.rawSeats] ?? '').trim();
+
+    // None of these sheets have a dimension-free product like "Ladeboy
+    // Klapprollstuhl" - no measurement at all just means not measured yet.
+    if (maxWcLength == null && maxWcHeight == null && maxWcWidth == null) continue;
 
     const wheelchairTypes = String(row[COL.wheelchairTypes] ?? '')
       .split(',')

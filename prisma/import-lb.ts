@@ -121,8 +121,18 @@ async function main() {
     }
 
     const comment = String(row[COL.commentDe] ?? '').trim() || null;
+    const maxWcLength = toNullableInt(row[COL.maxWcLength]);
+    const maxWcHeight = toNullableInt(row[COL.maxWcHeight]);
+    const maxWcWidth = toNullableInt(row[COL.maxWcWidth]);
 
     const productCode = String(row[COL.productCode] ?? '').trim();
+
+    // "Ladeboy Klapprollstuhl" (LB-SH-MS) genuinely never has dimensions - any
+    // compressible wheelchair fits. Every other product without any measurement
+    // at all just hasn't been measured yet, regardless of how that's worded in
+    // the internal note (typos and phrasing vary too much to text-match reliably).
+    if (productCode !== 'LB-SH-MS' && maxWcLength == null && maxWcHeight == null && maxWcWidth == null) continue;
+
     const productLabel = PRODUCT_LABELS[productCode] ?? productCode;
     const filterGroupLabel = FILTER_GROUP_LABELS[productCode] ?? productLabel;
 
@@ -145,9 +155,9 @@ async function main() {
           filterGroupLabel,
           wheelchairType,
           isForHeavyWc: false,
-          maxWcLength: toNullableInt(row[COL.maxWcLength]),
-          maxWcHeight: toNullableInt(row[COL.maxWcHeight]),
-          maxWcWidth: toNullableInt(row[COL.maxWcWidth]),
+          maxWcLength,
+          maxWcHeight,
+          maxWcWidth,
           remainingSeats: String(row[COL.rawSeats] ?? '').trim(),
           isAdditionalVerificationNeeded: toBoolean(row[COL.isAdditionalVerificationNeeded]),
           comment
