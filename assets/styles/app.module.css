@@ -88,7 +88,7 @@
 }
 
 .app__result_params_footer {
-  @apply p-5 mt-auto;
+  @apply p-5;
 }
 
 .app__result_solutions {
