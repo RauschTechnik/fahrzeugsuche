@@ -427,7 +427,11 @@ export function CompatibilityForm({ isCheckDisabled, onCheckCompatibility, ...pr
               {isLoadingSpaceLocked && (
                 <p className="mt-1 inline-flex items-center gap-1.5 text-sm text-amber-600">
                   <Icon icon="circle-info" className="size-4 flex-shrink-0" />
-                  {t('CompatibilityForm.loading-space-locked-hint')}
+                  {t(
+                    fieldsVisibilityStates.isCompressible
+                      ? 'CompatibilityForm.loading-space-locked-hint-compressible'
+                      : 'CompatibilityForm.loading-space-locked-hint'
+                  )}
                 </p>
               )}
             </div>

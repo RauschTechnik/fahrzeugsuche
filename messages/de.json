@@ -73,6 +73,7 @@
     "height": "Höhe, cm",
     "scooter-height-hint": "Je nach Fahrzeug zwischen 78cm und 110cm Höhe möglich",
     "loading-space-locked-hint": "Bei diesem Rollstuhltyp ist nur die Verladung im Kofferraum möglich.",
+    "loading-space-locked-hint-compressible": "Bei diesem Rollstuhltyp ist grundsätzlich nur die Verladung im Kofferraum möglich. Für ausgewählte Modelle ist auch die seitliche Verladung möglich. Kontaktieren Sie uns hierfür gerne telefonisch oder über das Kontaktformular auf unserer Website.",
     "submit": "Passende Fahrzeuge finden"
   },
   "WheelchairTypesExplanationDialog": {
