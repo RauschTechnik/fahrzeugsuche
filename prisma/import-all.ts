@@ -100,12 +100,6 @@ async function importSheet(workbook: ReturnType<typeof read>, config: SheetConfi
       skippedNotCompatible++;
       continue;
     }
-    // Skip vehicles the team hasn't actually measured yet - the internal note
-    // says so even though isNotCompatible isn't set for these rows.
-    if (String(row[COL.hinweisIntern] ?? '').toLowerCase().includes('nicht vermessen')) {
-      skippedNotMeasured++;
-      continue;
-    }
 
     const manufacturerName = String(row[COL.manufacturer] ?? '').trim();
     const modelName = String(row[COL.modelDe] ?? '').trim();
@@ -143,12 +137,20 @@ async function importSheet(workbook: ReturnType<typeof read>, config: SheetConfi
     const comment = String(row[COL.commentDe] ?? '').trim() || null;
     const maxWcLength = toNullableInt(row[COL.maxWcLength]);
     const maxWcHeight = toNullableInt(row[COL.maxWcHeight]);
-    const maxWcWidth = config.useUnfoldedFigures ? toNullableInt(row[COL.maxUnfoldedWcWidth]) : toNullableInt(row[COL.maxWcWidth]);
+    const maxWcWidth = config.useUnfoldedFigures
+      ? toNullableInt(row[COL.maxUnfoldedWcWidth])
+      : toNullableInt(row[COL.maxWcWidth]);
     const remainingSeats = String(row[COL.rawSeats] ?? '').trim();
 
     // None of these sheets have a dimension-free product like "Ladeboy
     // Klapprollstuhl" - no measurement at all just means not measured yet.
-    if (maxWcLength == null && maxWcHeight == null && maxWcWidth == null) continue;
+    // Some rows note "not independently measured" but still carry real
+    // figures borrowed from an identical sibling model - those stay in,
+    // which is why this checks the dimensions instead of that note's text.
+    if (maxWcLength == null && maxWcHeight == null && maxWcWidth == null) {
+      skippedNotMeasured++;
+      continue;
+    }
 
     const wheelchairTypes = String(row[COL.wheelchairTypes] ?? '')
       .split(',')

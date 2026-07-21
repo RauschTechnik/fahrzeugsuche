@@ -80,12 +80,6 @@ async function main() {
       skippedNotCompatible++;
       continue;
     }
-    // Skip vehicles the team hasn't actually measured yet - the internal note
-    // says so even though isNotCompatible isn't set for these rows.
-    if (String(row[COL.hinweisIntern] ?? '').toLowerCase().includes('nicht vermessen')) {
-      skippedNotMeasured++;
-      continue;
-    }
 
     const manufacturerName = String(row[COL.manufacturer] ?? '').trim();
     const modelName = String(row[COL.modelDe] ?? '').trim();
@@ -130,8 +124,13 @@ async function main() {
     // "Ladeboy Klapprollstuhl" (LB-SH-MS) genuinely never has dimensions - any
     // compressible wheelchair fits. Every other product without any measurement
     // at all just hasn't been measured yet, regardless of how that's worded in
-    // the internal note (typos and phrasing vary too much to text-match reliably).
-    if (productCode !== 'LB-SH-MS' && maxWcLength == null && maxWcHeight == null && maxWcWidth == null) continue;
+    // the internal note (typos and phrasing vary too much to text-match reliably,
+    // and some rows note "not independently measured" but still carry real
+    // borrowed figures from an identical sibling model - those stay in).
+    if (productCode !== 'LB-SH-MS' && maxWcLength == null && maxWcHeight == null && maxWcWidth == null) {
+      skippedNotMeasured++;
+      continue;
+    }
 
     const productLabel = PRODUCT_LABELS[productCode] ?? productCode;
     const filterGroupLabel = FILTER_GROUP_LABELS[productCode] ?? productLabel;
