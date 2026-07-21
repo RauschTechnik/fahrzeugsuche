@@ -177,7 +177,11 @@ export function CompatibilityForm({ isCheckDisabled, onCheckCompatibility, ...pr
                                 <Label htmlFor="length">{t('CompatibilityForm.length')}</Label>
                                 <DimensionExplanationDialog
                                   title={t('CompatibilityForm.length')}
-                                  description={t('CompatibilityForm.length-description')}
+                                  description={
+                                    fieldsVisibilityStates.isScooter
+                                      ? t('CompatibilityForm.scooter-length-hint')
+                                      : t('CompatibilityForm.length-description')
+                                  }
                                   image={'wheelchair_length'}
                                 />
                               </div>
