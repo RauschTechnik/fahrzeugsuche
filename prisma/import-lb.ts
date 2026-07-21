@@ -64,11 +64,13 @@ async function main() {
     rawSeats: header.indexOf('SITZE-MAX'),
     isAdditionalVerificationNeeded: idx('isAdditionalVerificationNeeded'),
     commentDe: idx('commentDe'),
-    isNotCompatible: idx('isNotCompatible')
+    isNotCompatible: idx('isNotCompatible'),
+    hinweisIntern: header.indexOf('HINWEIS-INTERN')
   };
 
   let imported = 0;
   let skippedNotCompatible = 0;
+  let skippedNotMeasured = 0;
 
   for (const row of dataRows) {
     // Include every product variant in this tab (LB = normal, LB-TEZ = telescope
@@ -76,6 +78,12 @@ async function main() {
     // wheelchairTypes column already says which wheelchair type(s) it applies to.
     if (toBoolean(row[COL.isNotCompatible])) {
       skippedNotCompatible++;
+      continue;
+    }
+    // Skip vehicles the team hasn't actually measured yet - the internal note
+    // says so even though isNotCompatible isn't set for these rows.
+    if (String(row[COL.hinweisIntern] ?? '').toLowerCase().includes('nicht vermessen')) {
+      skippedNotMeasured++;
       continue;
     }
 
@@ -152,6 +160,7 @@ async function main() {
 
   console.log(`Imported ${imported} "Ladeboy gefaltet liegend im Kofferraum" compatibility rows.`);
   console.log(`Skipped ${skippedNotCompatible} rows marked as not compatible.`);
+  console.log(`Skipped ${skippedNotMeasured} rows for vehicles not yet measured.`);
 }
 
 main()

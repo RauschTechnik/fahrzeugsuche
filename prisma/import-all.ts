@@ -86,16 +86,24 @@ async function importSheet(workbook: ReturnType<typeof read>, config: SheetConfi
     rawSeats: header.indexOf('SITZE-MAX'),
     isAdditionalVerificationNeeded: idx('isAdditionalVerificationNeeded'),
     commentDe: idx('commentDe'),
-    isNotCompatible: idx('isNotCompatible')
+    isNotCompatible: idx('isNotCompatible'),
+    hinweisIntern: header.indexOf('HINWEIS-INTERN')
   };
 
   let imported = 0;
   let skippedNotCompatible = 0;
+  let skippedNotMeasured = 0;
 
   for (const row of dataRows) {
     if (row[COL.productCode] !== config.productCode) continue;
     if (toBoolean(row[COL.isNotCompatible])) {
       skippedNotCompatible++;
+      continue;
+    }
+    // Skip vehicles the team hasn't actually measured yet - the internal note
+    // says so even though isNotCompatible isn't set for these rows.
+    if (String(row[COL.hinweisIntern] ?? '').toLowerCase().includes('nicht vermessen')) {
+      skippedNotMeasured++;
       continue;
     }
 
@@ -166,7 +174,9 @@ async function importSheet(workbook: ReturnType<typeof read>, config: SheetConfi
     imported++;
   }
 
-  console.log(`[${config.sheet}] Imported ${imported} rows, skipped ${skippedNotCompatible} not-compatible rows.`);
+  console.log(
+    `[${config.sheet}] Imported ${imported} rows, skipped ${skippedNotCompatible} not-compatible, ${skippedNotMeasured} not-yet-measured.`
+  );
 }
 
 async function main() {

@@ -115,7 +115,8 @@ function collectRowsFromSheet(workbook: ReturnType<typeof read>, config: SheetCo
     rawSeats: header.indexOf('SITZE-MAX'),
     isAdditionalVerificationNeeded: idx('isAdditionalVerificationNeeded'),
     commentDe: idx('commentDe'),
-    isNotCompatible: idx('isNotCompatible')
+    isNotCompatible: idx('isNotCompatible'),
+    hinweisIntern: header.indexOf('HINWEIS-INTERN')
   };
 
   const result: Array<ImportRow> = [];
@@ -124,6 +125,9 @@ function collectRowsFromSheet(workbook: ReturnType<typeof read>, config: SheetCo
     const rowProductCode = String(row[COL.productCode] ?? '').trim();
     if (config.productCode && rowProductCode !== config.productCode) continue;
     if (toBoolean(row[COL.isNotCompatible])) continue;
+    // Skip vehicles the team hasn't actually measured yet - the internal note
+    // says so even though isNotCompatible isn't set for these rows.
+    if (String(row[COL.hinweisIntern] ?? '').toLowerCase().includes('nicht vermessen')) continue;
 
     const manufacturerName = String(row[COL.manufacturer] ?? '').trim();
     const modelName = String(row[COL.modelDe] ?? '').trim();
