@@ -74,13 +74,6 @@ export function CompatibilityParamsSummary({ compatibilityParams, onModifyParams
             </p>
           </div>
         )}
-
-        <div>
-          <h5 className={styles.app__result_params_key}>{t('weight')}</h5>
-          <p className={styles.app__result_params_value}>
-            {compatibilityParams.is_heavy_wc ? t('greater-55') : t('less-55')}
-          </p>
-        </div>
       </div>
 
       <div className={styles.app__result_params_footer}>

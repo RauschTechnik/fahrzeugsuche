@@ -53,15 +53,10 @@
     "trunk": "Im Kofferraum",
     "side": "Hinter dem Fahrersitz"
   },
-  "WheelchairWeight": {
-    "less-55": "< 55 kg",
-    "greater-55": "> 55 kg"
-  },
   "CompatibilityForm": {
     "title-loading-space": "Verladung",
     "title-wheelchair": "Rollstuhl",
     "type": "Typ",
-    "weight": "Eigengewicht Rollstuhl",
     "length": "Länge, cm",
     "length-description": "Falls die Rollstuhlfußstütze abnehmbar ist und Sie ohne Fußstützen verladen möchten, geben Sie bitte die Länge des Rollstuhls ohne Fußstütze an.",
     "width": "Breite, cm",
@@ -104,9 +99,6 @@
     "width-unfolded": "Breite ungefaltet",
     "width-folded": "Breite gefaltet",
     "height": "Höhe",
-    "weight": "Eigengewicht Rollstuhl",
-    "less-55": "Weniger als 55 kg",
-    "greater-55": "Mehr als 55 kg",
     "modify-parameters": "Parameter ändern",
     "centimetre": "cm"
   },

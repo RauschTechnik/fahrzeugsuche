@@ -4,11 +4,6 @@ export enum WheelchairType {
   Scooter = 'scooter'
 }
 
-export enum WheelchairWeightType {
-  Less55 = 'less_55',
-  Greater55 = 'greater_55'
-}
-
 // Each value maps to one Ladeboy loading option - see LOADING_OPTION_LABELS below.
 export enum LoadingPosition {
   TrunkFolded = 'trunk_folded',

@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useTranslations } from 'next-intl';
 import { ComponentPropsWithoutRef, useEffect, useMemo, useState } from 'react';
-import { CompatibilityParams, LoadingSpace, WheelchairType, WheelchairWeightType } from '@/types/app';
+import { CompatibilityParams, LoadingSpace, WheelchairType } from '@/types/app';
 import styles from '@/assets/styles/app.module.css';
 import { Icon } from '@/components/shared/Icon';
 import { Button } from '@/components/ui/button';
@@ -30,11 +30,6 @@ export function CompatibilityForm({ isCheckDisabled, onCheckCompatibility, ...pr
     { id: WheelchairType.Scooter, label: t('WheelchairType.scooter') }
   ];
 
-  const wheelchairWeights = [
-    { id: WheelchairWeightType.Less55, label: t('WheelchairWeight.less-55') },
-    { id: WheelchairWeightType.Greater55, label: t('WheelchairWeight.greater-55') }
-  ];
-
   const loadingSpaces = [
     { id: LoadingSpace.Trunk, label: t('LoadingSpace.trunk') },
     { id: LoadingSpace.Side, label: t('LoadingSpace.side') }
@@ -42,27 +37,15 @@ export function CompatibilityForm({ isCheckDisabled, onCheckCompatibility, ...pr
 
   const [activeWheelchairType, setActiveWheelchairType] = useState<WheelchairType>(WheelchairType.Regular);
 
-  const [activeWheelchairWeightType, setActiveWheelchairWeightType] = useState<WheelchairWeightType>(
-    WheelchairWeightType.Less55
-  );
-
   const [activeLoadingSpace, setActiveLoadingSpace] = useState<LoadingSpace>(LoadingSpace.Trunk);
 
   const fieldsVisibilityStates = useMemo(() => {
     return {
       isRegular: activeWheelchairType === WheelchairType.Regular,
       isCompressible: activeWheelchairType === WheelchairType.Compressible,
-      isLight: activeWheelchairWeightType === WheelchairWeightType.Less55,
-      isHeavy: activeWheelchairWeightType === WheelchairWeightType.Greater55,
-      isScooter: activeWheelchairType === WheelchairType.Scooter,
-      isCompressibleAndLight:
-        activeWheelchairType === WheelchairType.Compressible &&
-        activeWheelchairWeightType === WheelchairWeightType.Less55,
-      isCompressibleAndHeavy:
-        activeWheelchairType === WheelchairType.Compressible &&
-        activeWheelchairWeightType === WheelchairWeightType.Greater55
+      isScooter: activeWheelchairType === WheelchairType.Scooter
     };
-  }, [activeWheelchairType, activeWheelchairWeightType]);
+  }, [activeWheelchairType]);
 
   // Compressible wheelchairs and scooters are only ever loaded in the trunk -
   // lock the choice to that as soon as one of those types is selected.
@@ -74,35 +57,25 @@ export function CompatibilityForm({ isCheckDisabled, onCheckCompatibility, ...pr
     }
   }, [isLoadingSpaceLocked]);
 
-  // Weight only matters for scooters - regular and compressible wheelchairs are
-  // always treated as light. Reset the weight so a stale "> 55 kg" selection
-  // from a previous scooter search doesn't silently carry over.
-  useEffect(() => {
-    if (!fieldsVisibilityStates.isScooter) {
-      setActiveWheelchairWeightType(WheelchairWeightType.Less55);
-    }
-  }, [fieldsVisibilityStates.isScooter]);
-
   const fieldsWidthClassName = useMemo(() => {
-    return cn(fieldsVisibilityStates.isRegular && fieldsVisibilityStates.isLight ? 'md:w-1/4' : 'md:w-1/3');
+    return cn(fieldsVisibilityStates.isRegular ? 'md:w-1/4' : 'md:w-1/3');
   }, [fieldsVisibilityStates]);
 
   const formSchema = z.object({
-    length: fieldsVisibilityStates.isCompressibleAndLight
+    length: fieldsVisibilityStates.isCompressible
       ? z.any()
       : z.coerce
           .number()
           .int(t('Validations.length.integer'))
           .min(20, t('Validations.length.min', { value: 20 }))
           .max(200, t('Validations.length.max', { value: 200 })),
-    width:
-      fieldsVisibilityStates.isCompressibleAndHeavy || fieldsVisibilityStates.isScooter
-        ? z.coerce
-            .number()
-            .int(t('Validations.width.integer'))
-            .min(20, t('Validations.width.min', { value: 20 }))
-            .max(200, t('Validations.width.max', { value: 200 }))
-        : z.any(),
+    width: fieldsVisibilityStates.isScooter
+      ? z.coerce
+          .number()
+          .int(t('Validations.width.integer'))
+          .min(20, t('Validations.width.min', { value: 20 }))
+          .max(200, t('Validations.width.max', { value: 200 }))
+      : z.any(),
     width_unfolded: fieldsVisibilityStates.isRegular
       ? z.coerce
           .number()
@@ -110,15 +83,14 @@ export function CompatibilityForm({ isCheckDisabled, onCheckCompatibility, ...pr
           .min(20, t('Validations.width-unfolded.min', { value: 20 }))
           .max(200, t('Validations.width-unfolded.max', { value: 200 }))
       : z.any(),
-    width_folded:
-      fieldsVisibilityStates.isRegular && fieldsVisibilityStates.isLight
-        ? z.coerce
-            .number()
-            .int(t('Validations.width-folded.integer'))
-            .min(20, t('Validations.width-folded.min', { value: 20 }))
-            .max(200, t('Validations.width-folded.max', { value: 200 }))
-        : z.any(),
-    height: fieldsVisibilityStates.isCompressibleAndLight
+    width_folded: fieldsVisibilityStates.isRegular
+      ? z.coerce
+          .number()
+          .int(t('Validations.width-folded.integer'))
+          .min(20, t('Validations.width-folded.min', { value: 20 }))
+          .max(200, t('Validations.width-folded.max', { value: 200 }))
+      : z.any(),
+    height: fieldsVisibilityStates.isCompressible
       ? z.any()
       : z.coerce
           .number()
@@ -145,10 +117,11 @@ export function CompatibilityForm({ isCheckDisabled, onCheckCompatibility, ...pr
       length: values.length,
       width: fieldsVisibilityStates.isCompressible || fieldsVisibilityStates.isScooter ? values.width : undefined,
       width_unfolded: fieldsVisibilityStates.isRegular ? values.width_unfolded : undefined,
-      width_folded:
-        fieldsVisibilityStates.isRegular && fieldsVisibilityStates.isLight ? values.width_folded : undefined,
+      width_folded: fieldsVisibilityStates.isRegular ? values.width_folded : undefined,
       height: values.height,
-      is_heavy_wc: fieldsVisibilityStates.isScooter ? fieldsVisibilityStates.isHeavy : false
+      // Scooters are always stored as heavy in the vehicle data - there is no
+      // lighter category to distinguish, so this is never user-chosen.
+      is_heavy_wc: fieldsVisibilityStates.isScooter
     });
 
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -186,28 +159,9 @@ export function CompatibilityForm({ isCheckDisabled, onCheckCompatibility, ...pr
                 </TabsList>
               </Tabs>
             </div>
-
-            <div className={cn([styles.app__form_field, 'md:w-1/2'])}>
-              {fieldsVisibilityStates.isScooter && (
-                <>
-                  <Label>{t('CompatibilityForm.weight')}</Label>
-                  <Tabs
-                    value={activeWheelchairWeightType}
-                    onValueChange={(value) => setActiveWheelchairWeightType(value as WheelchairWeightType)}>
-                    <TabsList className={styles.app__form_tablist}>
-                      {wheelchairWeights.map((weight) => (
-                        <TabsTrigger key={weight.id} value={weight.id} className={styles.app__form_tabtrigger}>
-                          {weight.label}
-                        </TabsTrigger>
-                      ))}
-                    </TabsList>
-                  </Tabs>
-                </>
-              )}
-            </div>
           </div>
 
-          {!(fieldsVisibilityStates.isCompressible && fieldsVisibilityStates.isLight) && (
+          {!fieldsVisibilityStates.isCompressible && (
             <div className={styles.app__form_body}>
               <FormField
                 control={form.control}
@@ -321,7 +275,7 @@ export function CompatibilityForm({ isCheckDisabled, onCheckCompatibility, ...pr
                 />
               )}
 
-              {fieldsVisibilityStates.isRegular && fieldsVisibilityStates.isLight && (
+              {fieldsVisibilityStates.isRegular && (
                 <FormField
                   control={form.control}
                   name="width_folded"
