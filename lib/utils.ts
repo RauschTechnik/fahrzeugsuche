@@ -7,8 +7,12 @@ export function cn(...inputs: ClassValue[]) {
 
 // remainingSeats is free text from the spreadsheet (e.g. "2-3", "3(5)", "4-5*")
 // - this pulls out the first number as the guaranteed minimum seat count, or
-// null when there isn't one (e.g. "Nicht zutreffend").
+// null when there isn't one (e.g. "Nicht zutreffend"). A literal "0" isn't a
+// meaningful seat count to filter by either (a stray data-entry value), so it
+// is treated the same as no value - always shown, never a filter checkbox.
 export function parseMinSeats(remainingSeats: string): number | null {
   const match = remainingSeats.match(/\d+/);
-  return match ? parseInt(match[0], 10) : null;
+  if (!match) return null;
+  const value = parseInt(match[0], 10);
+  return value === 0 ? null : value;
 }
