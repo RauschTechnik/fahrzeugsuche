@@ -4,11 +4,6 @@ import { randomUUID } from 'crypto';
 import { prisma } from '@/lib/db';
 import { LOADING_SPACE_POSITIONS, LoadingPosition, VehicleMatch, VehicleMatchParams } from '@/types/app';
 
-// A 5cm tolerance is applied before excluding a car model outright - anything
-// within the tolerance is still returned, but flagged so the customer knows to
-// double-check with support before ordering.
-const TOLERANCE_CM = 5;
-
 const ALL_POSITIONS = [
   LoadingPosition.TrunkFolded,
   LoadingPosition.TrunkUnfolded,
@@ -36,13 +31,13 @@ export async function getMatchingVehicles({
     const dimensionFilters = [];
 
     if (length != null) {
-      dimensionFilters.push({ OR: [{ maxWcLength: null }, { maxWcLength: { gt: length - TOLERANCE_CM } }] });
+      dimensionFilters.push({ OR: [{ maxWcLength: null }, { maxWcLength: { gte: length } }] });
     }
     if (relevantWidth != null) {
-      dimensionFilters.push({ OR: [{ maxWcWidth: null }, { maxWcWidth: { gt: relevantWidth - TOLERANCE_CM } }] });
+      dimensionFilters.push({ OR: [{ maxWcWidth: null }, { maxWcWidth: { gte: relevantWidth } }] });
     }
     if (height != null) {
-      dimensionFilters.push({ OR: [{ maxWcHeight: null }, { maxWcHeight: { gt: height - TOLERANCE_CM } }] });
+      dimensionFilters.push({ OR: [{ maxWcHeight: null }, { maxWcHeight: { gte: height } }] });
     }
 
     const compatibilities = await prisma.compatibility.findMany({
@@ -57,9 +52,6 @@ export async function getMatchingVehicles({
       select: {
         productLabel: true,
         filterGroupLabel: true,
-        maxWcLength: true,
-        maxWcWidth: true,
-        maxWcHeight: true,
         remainingSeats: true,
         isAdditionalVerificationNeeded: true,
         comment: true,
@@ -77,16 +69,12 @@ export async function getMatchingVehicles({
     });
 
     for (const entry of compatibilities) {
-      const exceedsLength = length != null && entry.maxWcLength != null && entry.maxWcLength < length;
-      const exceedsWidth = relevantWidth != null && entry.maxWcWidth != null && entry.maxWcWidth < relevantWidth;
-      const exceedsHeight = height != null && entry.maxWcHeight != null && entry.maxWcHeight < height;
-
       const loadingOption = {
         position,
         label: entry.productLabel,
         filterGroup: entry.filterGroupLabel,
         remainingSeats: entry.remainingSeats,
-        showCheckWithSupportWarning: entry.isAdditionalVerificationNeeded || exceedsLength || exceedsWidth || exceedsHeight,
+        showCheckWithSupportWarning: entry.isAdditionalVerificationNeeded,
         comment: entry.comment
       };
 
