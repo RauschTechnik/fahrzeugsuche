@@ -51,8 +51,11 @@ export async function getMatchingVehicles({
         wheelchairType,
         isForHeavyWc: isHeavyWc,
         AND: dimensionFilters,
-        // Only vehicles still in production today (no end year set).
-        carModel: { yearOfProductionUntil: null }
+        // Vehicles still in production (no end year set) plus those whose
+        // production run extends through the current year or later.
+        carModel: {
+          OR: [{ yearOfProductionUntil: null }, { yearOfProductionUntil: { gte: new Date().getFullYear() } }]
+        }
       },
       select: {
         productLabel: true,
