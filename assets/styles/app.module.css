@@ -72,7 +72,7 @@
 }
 
 .app__result_params_header {
-  @apply flex items-center gap-1.5 pt-5 px-5;
+  @apply flex items-start gap-1.5 pt-5 px-5;
 }
 
 .app__result_params_item {
