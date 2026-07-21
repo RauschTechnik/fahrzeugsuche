@@ -6,6 +6,7 @@ import { CompatibilityParamsSummary } from '@/components/app/CompatibilityParams
 import { VehicleMatchCards } from '@/components/app/VehicleMatchCards';
 import { LoadingOptionFilter } from '@/components/app/LoadingOptionFilter';
 import { SeatsFilter } from '@/components/app/SeatsFilter';
+import { EmailMatchesDialog } from '@/components/app/EmailMatchesDialog';
 
 const ALL_POSITIONS = [
   LoadingPosition.TrunkFolded,
@@ -135,6 +136,8 @@ export function VehicleMatches({ compatibilityParams, matches, onModifyParams, .
         />
 
         <VehicleMatchCards matches={filteredMatches} />
+
+        <EmailMatchesDialog matches={filteredMatches} />
       </div>
     </div>
   );

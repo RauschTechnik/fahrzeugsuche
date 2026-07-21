@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import { Montserrat } from 'next/font/google';
 import { NextIntlClientProvider } from 'next-intl';
 import { getLocale, getMessages } from 'next-intl/server';
+import { Toaster } from '@/components/ui/sonner';
 import '@/assets/styles/globals.css';
 
 const montserrat = Montserrat({
@@ -28,6 +29,8 @@ export default async function AppLayout({
     <html lang={locale}>
       <body className={`${montserrat.variable} font-montserrat antialiased`}>
         <NextIntlClientProvider messages={messages}>{children}</NextIntlClientProvider>
+
+        <Toaster richColors />
       </body>
     </html>
   );

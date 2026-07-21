@@ -24,6 +24,16 @@
       "min": "Höhe darf nicht weniger als {value} cm betragen",
       "max": "Höhe darf nicht mehr als {value} cm betragen",
       "integer": "Höhe muss eine ganze Zahl sein"
+    },
+    "email": {
+      "required": "E-Mail ist erforderlich",
+      "invalid": "E-Mail ist nicht gültig"
+    },
+    "first-name": {
+      "required": "Vorname ist erforderlich"
+    },
+    "last-name": {
+      "required": "Nachname ist erforderlich"
     }
   },
   "Wizard": {
@@ -110,5 +120,25 @@
     "check-with-support": "Mit dem Support überprüfen",
     "not-applicable": "Nicht zutreffend",
     "loading-capacity-disclaimer": "Einschränkung: Bei Elektro- oder Hybridfahrzeugen kann der Batteriespeicher die Ladefähigkeit beeinträchtigen. Bitte wenden Sie sich an den Support."
+  },
+  "EmailMatchesDialog": {
+    "trigger": "Ergebnisse per E-Mail senden",
+    "title": "Ergebnisse per E-Mail senden",
+    "description": "Bitte geben Sie die Details des Empfängers ein",
+    "email": "E-Mail",
+    "first-name": "Vorname",
+    "last-name": "Nachname",
+    "cancel": "Abbrechen",
+    "submit": "Ergebnisse senden",
+    "submitted-successfully": "Ihre E-Mail wurde erfolgreich gesendet",
+    "something-went-wrong": "Es ist ein Fehler aufgetreten. Wenden Sie sich an den Support"
+  },
+  "Emails": {
+    "VehicleMatches": {
+      "subject": "Ihre passenden Fahrzeuge",
+      "greeting-full": "Hallo {firstName} {lastName}, hier sind die für Sie passenden Fahrzeuge",
+      "greeting-first-part": "Hallo {firstName} {lastName},",
+      "greeting-second-part": "Hier sind die für Sie passenden Fahrzeuge:"
+    }
   }
 }
