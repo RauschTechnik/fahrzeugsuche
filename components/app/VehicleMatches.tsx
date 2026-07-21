@@ -7,6 +7,7 @@ import { VehicleMatchCards } from '@/components/app/VehicleMatchCards';
 import { LoadingOptionFilter } from '@/components/app/LoadingOptionFilter';
 import { SeatsFilter } from '@/components/app/SeatsFilter';
 import { EmailMatchesDialog } from '@/components/app/EmailMatchesDialog';
+import { PurchaseDisclaimer } from '@/components/app/PurchaseDisclaimer';
 
 const ALL_POSITIONS = [
   LoadingPosition.TrunkFolded,
@@ -120,7 +121,11 @@ export function VehicleMatches({ compatibilityParams, matches, onModifyParams, .
 
   return (
     <div className={cn(styles.app__result)} {...props}>
-      <CompatibilityParamsSummary compatibilityParams={compatibilityParams} onModifyParams={onModifyParams} />
+      <div className="flex w-full flex-shrink-0 flex-col gap-5 md:max-w-[240px]">
+        <CompatibilityParamsSummary compatibilityParams={compatibilityParams} onModifyParams={onModifyParams} />
+
+        <PurchaseDisclaimer />
+      </div>
 
       <div className={styles.app__result_solutions}>
         <LoadingOptionFilter

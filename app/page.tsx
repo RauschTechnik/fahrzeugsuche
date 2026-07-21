@@ -9,6 +9,7 @@ import { CompatibilityParams, VehicleMatch } from '@/types/app';
 import { Button } from '@/components/ui/button';
 import { CompatibilityForm } from '@/components/app/CompatibilityForm';
 import { VehicleMatches } from '@/components/app/VehicleMatches';
+import { PurchaseDisclaimer } from '@/components/app/PurchaseDisclaimer';
 
 export default function RootPage() {
   const t = useTranslations('Wizard');
@@ -78,6 +79,8 @@ export default function RootPage() {
         onCheckCompatibility={onCheckCompatibility}
         hidden={isShowMatches}
       />
+
+      {!isShowMatches && <PurchaseDisclaimer className="mt-8" />}
 
       {isShowMatches && (
         <VehicleMatches

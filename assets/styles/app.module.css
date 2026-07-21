@@ -94,3 +94,7 @@
 .app__result_solutions {
   @apply flex-grow;
 }
+
+.app__disclaimer {
+  @apply rounded-[20px] border-gray-200 border shadow w-full flex flex-col;
+}
