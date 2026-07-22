@@ -179,13 +179,20 @@ export function CompatibilityForm({ isCheckDisabled, onCheckCompatibility, ...pr
                                   title={t('CompatibilityForm.length')}
                                   description={
                                     fieldsVisibilityStates.isScooter
-                                      ? t('CompatibilityForm.scooter-length-hint')
+                                      ? undefined
                                       : t('CompatibilityForm.length-description')
                                   }
                                   image={'wheelchair_length'}
                                 />
                               </div>
                               <Input {...field} type="number" id="length" />
+
+                              {fieldsVisibilityStates.isScooter && (
+                                <p className="inline-flex items-center gap-1.5 text-sm text-amber-600">
+                                  <Icon icon="circle-info" className="size-4 flex-shrink-0" />
+                                  {t('CompatibilityForm.scooter-length-hint')}
+                                </p>
+                              )}
                             </div>
                           </TooltipTrigger>
 
@@ -218,13 +225,17 @@ export function CompatibilityForm({ isCheckDisabled, onCheckCompatibility, ...pr
                                   <DimensionExplanationDialog
                                     className={fieldsVisibilityStates.isScooter ? '' : 'md:hidden'}
                                     title={t('CompatibilityForm.width')}
-                                    description={
-                                      fieldsVisibilityStates.isScooter ? t('CompatibilityForm.scooter-width-hint') : undefined
-                                    }
                                     image={'wheelchair_width'}
                                   />
                                 </div>
                                 <Input {...field} type="number" id="width" />
+
+                                {fieldsVisibilityStates.isScooter && (
+                                  <p className="inline-flex items-center gap-1.5 text-sm text-amber-600">
+                                    <Icon icon="circle-info" className="size-4 flex-shrink-0" />
+                                    {t('CompatibilityForm.scooter-width-hint')}
+                                  </p>
+                                )}
                               </div>
                             </TooltipTrigger>
 
@@ -331,13 +342,17 @@ export function CompatibilityForm({ isCheckDisabled, onCheckCompatibility, ...pr
                                 <DimensionExplanationDialog
                                   className={fieldsVisibilityStates.isScooter ? '' : 'md:hidden'}
                                   title={t('CompatibilityForm.height')}
-                                  description={
-                                    fieldsVisibilityStates.isScooter ? t('CompatibilityForm.scooter-height-hint') : undefined
-                                  }
                                   image={'wheelchair_height'}
                                 />
                               </div>
                               <Input {...field} type="number" id="height" />
+
+                              {fieldsVisibilityStates.isScooter && (
+                                <p className="inline-flex items-center gap-1.5 text-sm text-amber-600">
+                                  <Icon icon="circle-info" className="size-4 flex-shrink-0" />
+                                  {t('CompatibilityForm.scooter-height-hint')}
+                                </p>
+                              )}
                             </div>
                           </TooltipTrigger>
 
