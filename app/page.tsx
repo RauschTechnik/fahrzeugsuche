@@ -10,6 +10,7 @@ import { Button } from '@/components/ui/button';
 import { CompatibilityForm } from '@/components/app/CompatibilityForm';
 import { VehicleMatches } from '@/components/app/VehicleMatches';
 import { PurchaseDisclaimer } from '@/components/app/PurchaseDisclaimer';
+import { SearchScopeNotice } from '@/components/app/SearchScopeNotice';
 
 export default function RootPage() {
   const t = useTranslations('Wizard');
@@ -80,7 +81,9 @@ export default function RootPage() {
         hidden={isShowMatches}
       />
 
-      {!isShowMatches && <PurchaseDisclaimer className="mt-8" />}
+      {!isShowMatches && <SearchScopeNotice className="mt-8" />}
+
+      {!isShowMatches && <PurchaseDisclaimer className="mt-5" />}
 
       {isShowMatches && (
         <VehicleMatches
