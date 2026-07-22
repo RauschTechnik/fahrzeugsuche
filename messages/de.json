@@ -118,6 +118,7 @@
   "PurchaseDisclaimer": {
     "title": "Wichtiger Hinweis vor dem Fahrzeugkauf",
     "paragraph-1": "Bitte kontaktieren Sie uns vor dem Kauf des Fahrzeugs unbedingt noch einmal – so gehen wir gemeinsam sicher, dass alles wie gewünscht funktioniert.",
+    "paragraph-scope": "In dieser Fahrzeugsuche werden nur Modelle geprüft, die bis heute oder bis einschließlich {year} produziert wurden.",
     "paragraph-2": "Sollten Sie Ihr Wunschfahrzeug nicht in den Ergebnissen finden, hat das in der Regel einen von zwei Gründen: Entweder sind (1) die eingegebenen Rollstuhlmaße für dieses Fahrzeug zu groß, oder (2) wir haben das Fahrzeug noch nicht vermessen. Sprechen Sie uns in diesem Fall gerne an – wir finden für Sie eine passende Lösung.",
     "paragraph-3": "Ihr Wunschmodell können Sie außerdem jederzeit selbst über unseren Kompatibilitäts-Check prüfen:",
     "link-label": "check.ladeboy.de"

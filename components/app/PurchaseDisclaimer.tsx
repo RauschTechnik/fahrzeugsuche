@@ -14,8 +14,9 @@ export function PurchaseDisclaimer({ className, ...props }: ComponentPropsWithou
         <h4 className={styles.app__form_title}>{t('title')}</h4>
       </div>
 
-      <div className="space-y-3 p-5 text-sm text-gray-600">
+      <div className="space-y-3 p-5 text-base text-gray-600">
         <p>{t('paragraph-1')}</p>
+        <p>{t('paragraph-scope', { year: new Date().getFullYear() })}</p>
         <p>{t('paragraph-2')}</p>
         <p>
           {t('paragraph-3')}{' '}
