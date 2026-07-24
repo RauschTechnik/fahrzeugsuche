@@ -1,7 +1,7 @@
 import { Html, Head, Preview, Body, Container, Section, Text } from '@react-email/components';
 import * as React from 'react';
 import { getTranslations } from 'next-intl/server';
-import { VehicleMatch } from '@/types/app';
+import { translateProductLabel, VehicleMatch } from '@/types/app';
 
 type Props = {
   firstName: string;
@@ -12,6 +12,7 @@ type Props = {
 export default async function VehicleMatchesEmail({ firstName, lastName, matches }: Props) {
   const t = await getTranslations('VehicleMatches');
   const tem = await getTranslations('Emails.VehicleMatches');
+  const tProductLabels = await getTranslations('ProductLabels');
 
   const gray = '#6b7280';
   const orange = '#eb7a23';
@@ -86,7 +87,7 @@ export default async function VehicleMatchesEmail({ firstName, lastName, matches
                         <tr>
                           <td style={{ padding: '10px 12px' }}>
                             <Text style={{ fontSize: 15, fontWeight: 700, margin: 0, color: orange }}>
-                              {option.label}
+                              {translateProductLabel(tProductLabels, option.label)}
                             </Text>
                             <Text style={{ fontSize: 14, margin: '6px 0 0' }}>
                               <span style={{ color: gray }}>{`${t('remaining-seats')}: `}</span>

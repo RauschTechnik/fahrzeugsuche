@@ -1,6 +1,7 @@
 import { useTranslations } from 'next-intl';
 import { Check } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { translateProductLabel } from '@/types/app';
 
 interface Props {
   labels: Array<string>;
@@ -10,6 +11,7 @@ interface Props {
 
 export function LoadingOptionFilter({ labels, activeLabels, onToggleLabel }: Props) {
   const t = useTranslations('VehicleMatches');
+  const tProductLabels = useTranslations('ProductLabels');
 
   if (labels.length <= 1) return null;
 
@@ -33,7 +35,9 @@ export function LoadingOptionFilter({ labels, activeLabels, onToggleLabel }: Pro
                 {isActive && <Check className="size-3.5 text-white" strokeWidth={3} />}
               </span>
 
-              <span className={isActive ? 'font-medium' : 'text-gray-500'}>{label}</span>
+              <span className={isActive ? 'font-medium' : 'text-gray-500'}>
+                {translateProductLabel(tProductLabels, label)}
+              </span>
             </label>
           );
         })}

@@ -145,5 +145,16 @@
       "greeting-first-part": "Bonjour {firstName} {lastName},",
       "greeting-second-part": "Voici les véhicules qui correspondent à votre fauteuil roulant :"
     }
+  },
+  "ProductLabels": {
+    "LB": "Ladeboy plié couché dans le coffre",
+    "LB-TEZ": "Ladeboy avec bras télescopique, plié couché dans le coffre",
+    "LB-SH-MS": "Ladeboy fauteuil roulant pliable dans le coffre",
+    "LB-S": "Ladeboy plié debout dans le coffre",
+    "LB-S-UG": "Ladeboy déplié debout dans le coffre",
+    "LB-S2": "Ladeboy S2 plié derrière le siège conducteur",
+    "LB-S2-UG": "Ladeboy S2 déplié derrière le siège conducteur",
+    "LB-S2-SM": "Ladeboy S2 plié derrière le siège conducteur avec module pivotant",
+    "SC": "Scooterboy dans le coffre"
   }
 }

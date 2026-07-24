@@ -3,7 +3,7 @@ import { useTranslations } from 'next-intl';
 import { ChevronDown } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Icon } from '@/components/shared/Icon';
-import { VehicleMatch } from '@/types/app';
+import { translateProductLabel, VehicleMatch } from '@/types/app';
 import { Alert, AlertType } from '@/components/shared/Alert';
 
 interface Props {
@@ -12,6 +12,7 @@ interface Props {
 
 export function VehicleMatchCard({ match }: Props) {
   const t = useTranslations('VehicleMatches');
+  const tProductLabels = useTranslations('ProductLabels');
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -43,7 +44,7 @@ export function VehicleMatchCard({ match }: Props) {
           <ul className="space-y-3">
             {match.loadingOptions.map((option) => (
               <li key={option.label} className="rounded-lg border border-gray-200 p-3">
-                <p className="font-semibold">{option.label}</p>
+                <p className="font-semibold">{translateProductLabel(tProductLabels, option.label)}</p>
 
                 <p>
                   <span className="mr-2 text-gray-500">{t('remaining-seats')}</span>

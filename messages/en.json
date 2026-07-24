@@ -145,5 +145,16 @@
       "greeting-first-part": "Hello {firstName} {lastName},",
       "greeting-second-part": "Here are the vehicles that match your wheelchair:"
     }
+  },
+  "ProductLabels": {
+    "LB": "Ladeboy folded lying down in the trunk",
+    "LB-TEZ": "Ladeboy with telescopic arm, folded lying down in the trunk",
+    "LB-SH-MS": "Ladeboy folding wheelchair in the trunk",
+    "LB-S": "Ladeboy folded standing in the trunk",
+    "LB-S-UG": "Ladeboy unfolded standing in the trunk",
+    "LB-S2": "Ladeboy S2 folded behind the driver's seat",
+    "LB-S2-UG": "Ladeboy S2 unfolded behind the driver's seat",
+    "LB-S2-SM": "Ladeboy S2 folded behind the driver's seat with swivel module",
+    "SC": "Scooterboy in the trunk"
   }
 }

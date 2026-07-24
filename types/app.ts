@@ -56,6 +56,26 @@ export const FILTER_GROUP_LABELS: Record<string, string> = {
   SC: PRODUCT_LABELS.SC
 };
 
+// The database stores product labels as plain German text (baked in at import
+// time from the source spreadsheet), so they don't automatically follow the
+// UI's locale. This maps that stored German text back to its product code,
+// which callers use to look up a translated label via the "ProductLabels"
+// message namespace - see translateProductLabel below.
+export const PRODUCT_LABEL_TO_CODE: Record<string, string> = Object.fromEntries(
+  Object.entries(PRODUCT_LABELS).map(([code, label]) => [label, code])
+);
+
+// Falls back to the raw (German) label if it doesn't match a known product
+// code, rather than passing an arbitrary string as a translation key. Typed
+// loosely because callers pass a next-intl translator scoped to the
+// "ProductLabels" namespace, whose key type is too narrow to accept a
+// dynamically looked-up string otherwise.
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export function translateProductLabel(t: (key: any) => string, label: string): string {
+  const code = PRODUCT_LABEL_TO_CODE[label];
+  return code ? t(code) : label;
+}
+
 export type CompatibilityParams = {
   loading_space: LoadingSpace;
   wheelchair_type: WheelchairType;

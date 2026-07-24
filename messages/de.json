@@ -145,5 +145,16 @@
       "greeting-first-part": "Hallo {firstName} {lastName},",
       "greeting-second-part": "Hier sind die für Sie passenden Fahrzeuge:"
     }
+  },
+  "ProductLabels": {
+    "LB": "Ladeboy gefaltet liegend im Kofferraum",
+    "LB-TEZ": "Ladeboy mit Teleskoparm gefaltet liegend im Kofferraum",
+    "LB-SH-MS": "Ladeboy Klapprollstuhl im Kofferraum",
+    "LB-S": "Ladeboy gefaltet stehend im Kofferraum",
+    "LB-S-UG": "Ladeboy ungefaltet stehend im Kofferraum",
+    "LB-S2": "Ladeboy S2 gefaltet hinter dem Fahrersitz",
+    "LB-S2-UG": "Ladeboy S2 ungefaltet hinter dem Fahrersitz",
+    "LB-S2-SM": "Ladeboy S2 gefaltet hinter dem Fahrersitz mit Schwenkmodul",
+    "SC": "Scooterboy im Kofferraum"
   }
 }
