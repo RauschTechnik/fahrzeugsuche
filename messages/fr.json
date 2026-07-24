@@ -1,0 +1,149 @@
+{
+  "Validations": {
+    "length": {
+      "min": "La longueur ne doit pas être inférieure à {value} cm",
+      "max": "La longueur ne doit pas dépasser {value} cm",
+      "integer": "La longueur doit être un nombre entier"
+    },
+    "width": {
+      "min": "La largeur ne doit pas être inférieure à {value} cm",
+      "max": "La largeur ne doit pas dépasser {value} cm",
+      "integer": "La largeur doit être un nombre entier"
+    },
+    "width-unfolded": {
+      "min": "La largeur dépliée ne doit pas être inférieure à {value} cm",
+      "max": "La largeur dépliée ne doit pas dépasser {value} cm",
+      "integer": "La largeur dépliée doit être un nombre entier"
+    },
+    "width-folded": {
+      "min": "La largeur pliée ne doit pas être inférieure à {value} cm",
+      "max": "La largeur pliée ne doit pas dépasser {value} cm",
+      "integer": "La largeur pliée doit être un nombre entier"
+    },
+    "height": {
+      "min": "La hauteur ne doit pas être inférieure à {value} cm",
+      "max": "La hauteur ne doit pas dépasser {value} cm",
+      "integer": "La hauteur doit être un nombre entier"
+    },
+    "email": {
+      "required": "L'e-mail est requis",
+      "invalid": "L'e-mail n'est pas valide"
+    },
+    "first-name": {
+      "required": "Le prénom est requis"
+    },
+    "last-name": {
+      "required": "Le nom est requis"
+    }
+  },
+  "Wizard": {
+    "title": "Recherche de véhicule",
+    "back-to-results": "Retour aux résultats",
+    "no-matches": {
+      "title": "Aucun véhicule correspondant trouvé",
+      "description": "Veuillez essayer d'ajuster les paramètres saisis."
+    }
+  },
+  "WheelchairType": {
+    "regular": "Standard",
+    "compressible": "Pliable",
+    "scooter": "Scooter"
+  },
+  "LoadingSpace": {
+    "trunk": "Dans le coffre",
+    "side": "Derrière le siège conducteur"
+  },
+  "CompatibilityForm": {
+    "title-loading-space": "Chargement",
+    "title-wheelchair": "Fauteuil roulant",
+    "type": "Type",
+    "length": "Longueur, cm",
+    "length-description": "Si le repose-pieds du fauteuil roulant est amovible et que vous souhaitez le charger sans repose-pieds, veuillez indiquer la longueur du fauteuil sans le repose-pieds.",
+    "scooter-length-hint": "Jusqu'à 142cm de longueur possible. 145cm dans des cas exceptionnels",
+    "width": "Largeur, cm",
+    "scooter-width-hint": "En général, jusqu'à 82cm de largeur possible",
+    "width-unfolded": "Largeur dépliée, cm",
+    "width-unfolded-description": "La largeur dépliée n'est pertinente que si vous souhaitez charger votre fauteuil roulant déplié. Si vous souhaitez le charger uniquement plié, vous pouvez simplement indiquer 20 cm.",
+    "width-folded": "Largeur pliée, cm",
+    "width-folded-description": "Par défaut, nous appliquons une largeur pliée de 35 cm. Si vous ne voyez aucune option de chargement, indiquez 35 cm ici – nous pourrons alors voir ensemble comment réduire la largeur pliée de votre fauteuil, ou si cela fonctionne aussi avec une largeur pliée plus grande.",
+    "height": "Hauteur, cm",
+    "scooter-height-hint": "Jusqu'à 94cm possible",
+    "loading-space-locked-hint": "Pour ce type de fauteuil roulant, seul le chargement dans le coffre est possible.",
+    "loading-space-locked-hint-compressible": "Pour ce type de fauteuil roulant, seul le chargement dans le coffre est généralement possible. Pour certains modèles sélectionnés, le chargement latéral est également possible. N'hésitez pas à nous contacter par téléphone ou via le formulaire de contact sur notre site pour cela.",
+    "submit": "Trouver les véhicules correspondants"
+  },
+  "WheelchairTypesExplanationDialog": {
+    "title": "Explication des types de fauteuils roulants",
+    "done": "Terminé",
+    "regular": {
+      "name": "Standard",
+      "description": "Fauteuils roulants pliants à cadre croisé"
+    },
+    "compressible": {
+      "name": "Pliable",
+      "description": "Fauteuils roulants portables ou fauteuils roulants électriques légers pliables de haut en bas"
+    },
+    "scooter": {
+      "name": "Scooter",
+      "description": "Scooters de mobilité et fauteuils roulants électriques lourds"
+    }
+  },
+  "CompatibleSolutionsParams": {
+    "loading-space": "Chargement",
+    "loading-space-values": {
+      "trunk": "Dans le coffre",
+      "side": "Derrière le siège conducteur"
+    },
+    "wheelchair": "Fauteuil roulant",
+    "length": "Longueur",
+    "width": "Largeur",
+    "width-unfolded": "Largeur dépliée",
+    "width-folded": "Largeur pliée",
+    "height": "Hauteur",
+    "modify-parameters": "Modifier les paramètres",
+    "centimetre": "cm"
+  },
+  "VehicleMatches": {
+    "filter-title": "Filtrer par méthode de chargement",
+    "seats-filter-title": "Filtrer par sièges restants",
+    "seats-count": "{count, plural, =1 {# siège} other {# sièges}}",
+    "matches-found": "{count, plural, =1 {# véhicule trouvé} other {# véhicules trouvés}}",
+    "model-today": "aujourd'hui",
+    "remaining-seats": "Sièges restants",
+    "compatibility": "Compatibilité",
+    "check-with-support": "Vérifier avec le support",
+    "not-applicable": "Non applicable",
+    "loading-capacity-disclaimer": "Restriction : pour les véhicules électriques ou hybrides, la batterie peut affecter la capacité de chargement. Veuillez contacter le support."
+  },
+  "PurchaseDisclaimer": {
+    "title": "Remarque importante avant l'achat du véhicule",
+    "paragraph-1": "Veuillez impérativement nous recontacter avant l'achat du véhicule – ainsi, nous nous assurons ensemble que tout fonctionne comme souhaité.",
+    "paragraph-2": "Si vous ne trouvez pas le véhicule souhaité dans les résultats, cela est généralement dû à l'une des deux raisons suivantes : soit (1) les dimensions du fauteuil roulant saisies sont trop grandes pour ce véhicule, soit (2) nous n'avons pas encore mesuré le véhicule. Dans ce cas, n'hésitez pas à nous contacter – nous trouverons une solution adaptée pour vous.",
+    "paragraph-3": "Vous pouvez également vérifier vous-même le modèle souhaité à tout moment via notre vérificateur de compatibilité :",
+    "link-label": "check.ladeboy.de"
+  },
+  "SearchScopeNotice": {
+    "title": "Remarque sur la période de recherche",
+    "text": "Cette recherche de véhicules ne concerne que les modèles produits jusqu'à aujourd'hui ou jusqu'en {year} inclus."
+  },
+  "EmailMatchesDialog": {
+    "trigger": "Envoyer les résultats par e-mail",
+    "title": "Envoyer les résultats par e-mail",
+    "description": "Veuillez indiquer les coordonnées du destinataire",
+    "email": "E-mail",
+    "first-name": "Prénom",
+    "last-name": "Nom",
+    "cancel": "Annuler",
+    "submit": "Envoyer les résultats",
+    "submitted-successfully": "Votre e-mail a été envoyé avec succès",
+    "something-went-wrong": "Une erreur s'est produite. Veuillez contacter le support"
+  },
+  "Emails": {
+    "VehicleMatches": {
+      "subject": "Vos véhicules compatibles",
+      "greeting-full": "Bonjour {firstName} {lastName}, voici les véhicules qui correspondent à votre fauteuil roulant",
+      "greeting-first-part": "Bonjour {firstName} {lastName},",
+      "greeting-second-part": "Voici les véhicules qui correspondent à votre fauteuil roulant :"
+    }
+  }
+}

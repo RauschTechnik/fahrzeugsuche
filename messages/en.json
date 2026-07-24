@@ -1,0 +1,149 @@
+{
+  "Validations": {
+    "length": {
+      "min": "Length must not be less than {value} cm",
+      "max": "Length must not be more than {value} cm",
+      "integer": "Length must be a whole number"
+    },
+    "width": {
+      "min": "Width must not be less than {value} cm",
+      "max": "Width must not be more than {value} cm",
+      "integer": "Width must be a whole number"
+    },
+    "width-unfolded": {
+      "min": "Unfolded width must not be less than {value} cm",
+      "max": "Unfolded width must not be more than {value} cm",
+      "integer": "Unfolded width must be a whole number"
+    },
+    "width-folded": {
+      "min": "Folded width must not be less than {value} cm",
+      "max": "Folded width must not be more than {value} cm",
+      "integer": "Folded width must be a whole number"
+    },
+    "height": {
+      "min": "Height must not be less than {value} cm",
+      "max": "Height must not be more than {value} cm",
+      "integer": "Height must be a whole number"
+    },
+    "email": {
+      "required": "Email is required",
+      "invalid": "Email is not valid"
+    },
+    "first-name": {
+      "required": "First name is required"
+    },
+    "last-name": {
+      "required": "Last name is required"
+    }
+  },
+  "Wizard": {
+    "title": "Vehicle Search",
+    "back-to-results": "Back to results",
+    "no-matches": {
+      "title": "No matching vehicles found",
+      "description": "Please try adjusting the parameters you entered."
+    }
+  },
+  "WheelchairType": {
+    "regular": "Regular",
+    "compressible": "Compressible",
+    "scooter": "Scooter"
+  },
+  "LoadingSpace": {
+    "trunk": "In the trunk",
+    "side": "Behind the driver's seat"
+  },
+  "CompatibilityForm": {
+    "title-loading-space": "Loading",
+    "title-wheelchair": "Wheelchair",
+    "type": "Type",
+    "length": "Length, cm",
+    "length-description": "If the wheelchair footrest is removable and you want to load it without the footrest, please enter the length of the wheelchair without the footrest.",
+    "scooter-length-hint": "Up to 142cm length possible. Up to 145cm in exceptional cases",
+    "width": "Width, cm",
+    "scooter-width-hint": "Up to 82cm width possible as standard",
+    "width-unfolded": "Width unfolded, cm",
+    "width-unfolded-description": "The unfolded width only matters if you want to load your wheelchair unfolded. If you only want to load it folded, you can simply enter 20 cm there.",
+    "width-folded": "Width folded, cm",
+    "width-folded-description": "By default we assume a folded width of 35 cm. If you don't see any loading options, enter 35 cm here – we can then discuss together how we can reduce the folded width of your wheelchair, or whether it also works with a larger folded width.",
+    "height": "Height, cm",
+    "scooter-height-hint": "Up to 94cm possible",
+    "loading-space-locked-hint": "For this wheelchair type, only loading in the trunk is possible.",
+    "loading-space-locked-hint-compressible": "For this wheelchair type, only loading in the trunk is generally possible. For selected models, side loading is also possible. Feel free to contact us by phone or via the contact form on our website for this.",
+    "submit": "Find matching vehicles"
+  },
+  "WheelchairTypesExplanationDialog": {
+    "title": "Explanation of wheelchair types",
+    "done": "Done",
+    "regular": {
+      "name": "Regular",
+      "description": "Cross-frame folding wheelchairs"
+    },
+    "compressible": {
+      "name": "Compressible",
+      "description": "Portable wheelchairs or lightweight electric wheelchairs that fold from top to bottom"
+    },
+    "scooter": {
+      "name": "Scooter",
+      "description": "Mobility scooters and heavy electric wheelchairs"
+    }
+  },
+  "CompatibleSolutionsParams": {
+    "loading-space": "Loading",
+    "loading-space-values": {
+      "trunk": "In the trunk",
+      "side": "Behind the driver's seat"
+    },
+    "wheelchair": "Wheelchair",
+    "length": "Length",
+    "width": "Width",
+    "width-unfolded": "Width unfolded",
+    "width-folded": "Width folded",
+    "height": "Height",
+    "modify-parameters": "Change parameters",
+    "centimetre": "cm"
+  },
+  "VehicleMatches": {
+    "filter-title": "Filter by loading method",
+    "seats-filter-title": "Filter by remaining seats",
+    "seats-count": "{count, plural, =1 {# seat} other {# seats}}",
+    "matches-found": "{count, plural, =1 {# vehicle} other {# vehicles}} found",
+    "model-today": "today",
+    "remaining-seats": "Remaining seats",
+    "compatibility": "Compatibility",
+    "check-with-support": "Check with support",
+    "not-applicable": "Not applicable",
+    "loading-capacity-disclaimer": "Limitation: for electric or hybrid vehicles, the battery pack may affect loading capacity. Please contact support."
+  },
+  "PurchaseDisclaimer": {
+    "title": "Important note before purchasing a vehicle",
+    "paragraph-1": "Please be sure to contact us once more before purchasing the vehicle – this way we can make sure together that everything works as intended.",
+    "paragraph-2": "If you can't find your desired vehicle in the results, this is usually due to one of two reasons: either (1) the wheelchair measurements you entered are too large for this vehicle, or (2) we haven't measured the vehicle yet. In this case, feel free to reach out to us – we'll find a suitable solution for you.",
+    "paragraph-3": "You can also check your desired model yourself at any time using our compatibility check:",
+    "link-label": "check.ladeboy.de"
+  },
+  "SearchScopeNotice": {
+    "title": "Note on search scope",
+    "text": "This vehicle search only checks models produced up to today or through {year}."
+  },
+  "EmailMatchesDialog": {
+    "trigger": "Send results by email",
+    "title": "Send results by email",
+    "description": "Please enter the recipient's details",
+    "email": "Email",
+    "first-name": "First name",
+    "last-name": "Last name",
+    "cancel": "Cancel",
+    "submit": "Send results",
+    "submitted-successfully": "Your email was sent successfully",
+    "something-went-wrong": "Something went wrong. Please contact support"
+  },
+  "Emails": {
+    "VehicleMatches": {
+      "subject": "Your matching vehicles",
+      "greeting-full": "Hello {firstName} {lastName}, here are the vehicles that match your wheelchair",
+      "greeting-first-part": "Hello {firstName} {lastName},",
+      "greeting-second-part": "Here are the vehicles that match your wheelchair:"
+    }
+  }
+}
