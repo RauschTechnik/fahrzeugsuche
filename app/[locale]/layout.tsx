@@ -6,6 +6,7 @@ import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, setRequestLocale } from 'next-intl/server';
 import { Toaster } from '@/components/ui/sonner';
 import { LanguageSwitcher } from '@/components/app/LanguageSwitcher';
+import { MeasurementGuideLink } from '@/components/app/MeasurementGuideLink';
 import { routing } from '@/i18n/routing';
 import '@/assets/styles/globals.css';
 
@@ -41,7 +42,8 @@ export default async function AppLayout({
     <html lang={locale}>
       <body className={`${montserrat.variable} font-montserrat antialiased`}>
         <NextIntlClientProvider messages={messages}>
-          <div className="container mx-auto flex justify-end px-5 pt-5">
+          <div className="container mx-auto flex items-center justify-end gap-3 px-5 pt-5">
+            <MeasurementGuideLink />
             <LanguageSwitcher />
           </div>
 

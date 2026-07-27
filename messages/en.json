@@ -146,6 +146,9 @@
       "greeting-second-part": "Here are the vehicles that match your wheelchair:"
     }
   },
+  "MeasurementGuide": {
+    "label": "Measurement guide"
+  },
   "ProductLabels": {
     "LB": "Ladeboy folded lying down in the trunk",
     "LB-TEZ": "Ladeboy with telescopic arm, folded lying down in the trunk",

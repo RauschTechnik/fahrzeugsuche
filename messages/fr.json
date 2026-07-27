@@ -146,6 +146,9 @@
       "greeting-second-part": "Voici les véhicules qui correspondent à votre fauteuil roulant :"
     }
   },
+  "MeasurementGuide": {
+    "label": "Fiche de mesure"
+  },
   "ProductLabels": {
     "LB": "Ladeboy plié couché dans le coffre",
     "LB-TEZ": "Ladeboy avec bras télescopique, plié couché dans le coffre",

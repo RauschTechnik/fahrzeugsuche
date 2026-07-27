@@ -146,6 +146,9 @@
       "greeting-second-part": "Hier sind die für Sie passenden Fahrzeuge:"
     }
   },
+  "MeasurementGuide": {
+    "label": "Maßblatt"
+  },
   "ProductLabels": {
     "LB": "Ladeboy gefaltet liegend im Kofferraum",
     "LB-TEZ": "Ladeboy mit Teleskoparm gefaltet liegend im Kofferraum",
