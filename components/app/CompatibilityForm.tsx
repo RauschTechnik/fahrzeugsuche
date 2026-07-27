@@ -223,7 +223,6 @@ export function CompatibilityForm({ isCheckDisabled, onCheckCompatibility, ...pr
                                 <div className="inline-flex items-center gap-1 self-start">
                                   <Label htmlFor="width">{t('CompatibilityForm.width')}</Label>
                                   <DimensionExplanationDialog
-                                    className={fieldsVisibilityStates.isScooter ? '' : 'md:hidden'}
                                     title={t('CompatibilityForm.width')}
                                     image={'wheelchair_width'}
                                   />
@@ -340,7 +339,6 @@ export function CompatibilityForm({ isCheckDisabled, onCheckCompatibility, ...pr
                               <div className="inline-flex items-center gap-1 self-start">
                                 <Label htmlFor="height">{t('CompatibilityForm.height')}</Label>
                                 <DimensionExplanationDialog
-                                  className={fieldsVisibilityStates.isScooter ? '' : 'md:hidden'}
                                   title={t('CompatibilityForm.height')}
                                   image={'wheelchair_height'}
                                 />
