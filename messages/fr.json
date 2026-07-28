@@ -124,7 +124,7 @@
   },
   "SearchScopeNotice": {
     "title": "Remarque sur la période de recherche",
-    "text": "Cette recherche de véhicules ne concerne que les modèles produits jusqu'à aujourd'hui ou jusqu'en {year} inclus."
+    "text": "Seuls les véhicules encore en production ou fabriqués au moins jusqu'en {year} sont pris en compte. Les modèles dont la production a pris fin plus tôt ne font pas partie de cette recherche."
   },
   "EmailMatchesDialog": {
     "trigger": "Envoyer les résultats par e-mail",

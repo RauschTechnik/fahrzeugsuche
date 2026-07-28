@@ -124,7 +124,7 @@
   },
   "SearchScopeNotice": {
     "title": "Hinweis zum Suchzeitraum",
-    "text": "In dieser Fahrzeugsuche werden nur Modelle geprüft, die bis heute oder bis einschließlich {year} produziert wurden."
+    "text": "Geprüft werden ausschließlich Fahrzeuge, die sich noch in Produktion befinden oder mindestens bis {year} gebaut wurden. Modelle mit früherem Produktionsende sind nicht Teil der Suche."
   },
   "EmailMatchesDialog": {
     "trigger": "Ergebnisse per E-Mail senden",

@@ -124,7 +124,7 @@
   },
   "SearchScopeNotice": {
     "title": "Note on search scope",
-    "text": "This vehicle search only checks models produced up to today or through {year}."
+    "text": "Only vehicles that are still in production or were built through at least {year} are checked. Models whose production ended earlier are not part of this search."
   },
   "EmailMatchesDialog": {
     "trigger": "Send results by email",
