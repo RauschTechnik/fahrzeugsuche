@@ -21,6 +21,11 @@ interface Props extends ComponentPropsWithoutRef<'form'> {
   onCheckCompatibility: (values: CompatibilityParams) => void;
 }
 
+const LOADING_SPACE_LANDING_PAGES: Record<LoadingSpace, string> = {
+  [LoadingSpace.Trunk]: 'https://trunk.rausch-technik.com/',
+  [LoadingSpace.Side]: 'https://side.rausch-technik.com/'
+};
+
 export function CompatibilityForm({ isCheckDisabled, onCheckCompatibility, ...props }: Props) {
   const t = useTranslations();
 
@@ -425,6 +430,14 @@ export function CompatibilityForm({ isCheckDisabled, onCheckCompatibility, ...pr
                   )}
                 </p>
               )}
+
+              <a
+                href={LOADING_SPACE_LANDING_PAGES[activeLoadingSpace]}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-1 self-start text-sm font-semibold text-key-500 hover:underline">
+                {t('CompatibilityForm.loading-space-learn-more')}
+              </a>
             </div>
           </div>
         </div>

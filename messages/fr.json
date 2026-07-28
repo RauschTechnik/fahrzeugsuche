@@ -74,6 +74,7 @@
     "scooter-height-hint": "Jusqu'à 94cm possible",
     "loading-space-locked-hint": "Pour ce type de fauteuil roulant, seul le chargement dans le coffre est possible.",
     "loading-space-locked-hint-compressible": "Pour ce type de fauteuil roulant, seul le chargement dans le coffre est généralement possible. Pour certains modèles sélectionnés, le chargement latéral est également possible. N'hésitez pas à nous contacter par téléphone ou via le formulaire de contact sur notre site pour cela.",
+    "loading-space-learn-more": "En savoir plus",
     "submit": "Trouver les véhicules correspondants"
   },
   "WheelchairTypesExplanationDialog": {

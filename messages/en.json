@@ -74,6 +74,7 @@
     "scooter-height-hint": "Up to 94cm possible",
     "loading-space-locked-hint": "For this wheelchair type, only loading in the trunk is possible.",
     "loading-space-locked-hint-compressible": "For this wheelchair type, only loading in the trunk is generally possible. For selected models, side loading is also possible. Feel free to contact us by phone or via the contact form on our website for this.",
+    "loading-space-learn-more": "Learn more",
     "submit": "Find matching vehicles"
   },
   "WheelchairTypesExplanationDialog": {
