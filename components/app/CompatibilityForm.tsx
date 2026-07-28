@@ -187,6 +187,12 @@ export function CompatibilityForm({ isCheckDisabled, onCheckCompatibility, ...pr
                               </div>
                               <Input {...field} type="number" id="length" />
 
+                              {fieldsVisibilityStates.isRegular && (
+                                <p className="text-xs text-gray-400">
+                                  {t('CompatibilityForm.length-measurement-sheet-ref')}
+                                </p>
+                              )}
+
                               {fieldsVisibilityStates.isScooter && (
                                 <p className="inline-flex items-center gap-1.5 text-sm text-amber-600">
                                   <Icon icon="circle-info" className="size-4 flex-shrink-0" />
@@ -272,6 +278,10 @@ export function CompatibilityForm({ isCheckDisabled, onCheckCompatibility, ...pr
                                   />
                                 </div>
                                 <Input {...field} type="number" id="width_unfolded" />
+
+                                <p className="text-xs text-gray-400">
+                                  {t('CompatibilityForm.width-unfolded-measurement-sheet-ref')}
+                                </p>
                               </div>
                             </TooltipTrigger>
 
@@ -309,6 +319,10 @@ export function CompatibilityForm({ isCheckDisabled, onCheckCompatibility, ...pr
                                   />
                                 </div>
                                 <Input {...field} type="number" id="width_folded" />
+
+                                <p className="text-xs text-gray-400">
+                                  {t('CompatibilityForm.width-folded-measurement-sheet-ref')}
+                                </p>
                               </div>
                             </TooltipTrigger>
 
@@ -344,6 +358,12 @@ export function CompatibilityForm({ isCheckDisabled, onCheckCompatibility, ...pr
                                 />
                               </div>
                               <Input {...field} type="number" id="height" />
+
+                              {fieldsVisibilityStates.isRegular && (
+                                <p className="text-xs text-gray-400">
+                                  {t('CompatibilityForm.height-measurement-sheet-ref')}
+                                </p>
+                              )}
 
                               {fieldsVisibilityStates.isScooter && (
                                 <p className="inline-flex items-center gap-1.5 text-sm text-amber-600">
