@@ -177,7 +177,7 @@ export function CompatibilityForm({ isCheckDisabled, onCheckCompatibility, ...pr
                       <TooltipProvider>
                         <Tooltip delayDuration={300}>
                           <TooltipTrigger asChild>
-                            <div className={'flex flex-col gap-2 md:gap-1'}>
+                            <div className={styles.app__form_field}>
                               <div className="inline-flex items-center gap-1 self-start">
                                 <Label htmlFor="length">{t('CompatibilityForm.length')}</Label>
                                 <DimensionExplanationDialog
