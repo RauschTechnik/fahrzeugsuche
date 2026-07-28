@@ -193,7 +193,7 @@ export function CompatibilityForm({ isCheckDisabled, onCheckCompatibility, ...pr
                               <Input {...field} type="number" id="length" />
 
                               {fieldsVisibilityStates.isRegular && (
-                                <p className="text-xs text-gray-400">
+                                <p className="text-xs text-black">
                                   {t('CompatibilityForm.length-measurement-sheet-ref')}
                                 </p>
                               )}
@@ -284,7 +284,7 @@ export function CompatibilityForm({ isCheckDisabled, onCheckCompatibility, ...pr
                                 </div>
                                 <Input {...field} type="number" id="width_unfolded" />
 
-                                <p className="text-xs text-gray-400">
+                                <p className="text-xs text-black">
                                   {t('CompatibilityForm.width-unfolded-measurement-sheet-ref')}
                                 </p>
                               </div>
@@ -325,7 +325,7 @@ export function CompatibilityForm({ isCheckDisabled, onCheckCompatibility, ...pr
                                 </div>
                                 <Input {...field} type="number" id="width_folded" />
 
-                                <p className="text-xs text-gray-400">
+                                <p className="text-xs text-black">
                                   {t('CompatibilityForm.width-folded-measurement-sheet-ref')}
                                 </p>
                               </div>
@@ -365,7 +365,7 @@ export function CompatibilityForm({ isCheckDisabled, onCheckCompatibility, ...pr
                               <Input {...field} type="number" id="height" />
 
                               {fieldsVisibilityStates.isRegular && (
-                                <p className="text-xs text-gray-400">
+                                <p className="text-xs text-black">
                                   {t('CompatibilityForm.height-measurement-sheet-ref')}
                                 </p>
                               )}
