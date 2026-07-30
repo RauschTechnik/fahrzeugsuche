@@ -1,5 +1,6 @@
 import * as React from 'react';
 import type { Metadata } from 'next';
+import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import { Montserrat } from 'next/font/google';
 import { NextIntlClientProvider } from 'next-intl';
@@ -42,9 +43,20 @@ export default async function AppLayout({
     <html lang={locale}>
       <body className={`${montserrat.variable} font-montserrat antialiased`}>
         <NextIntlClientProvider messages={messages}>
-          <div className="container mx-auto flex items-center justify-end gap-3 px-5 pt-5">
-            <MeasurementGuideLink />
-            <LanguageSwitcher />
+          <div className="container mx-auto flex items-center justify-between gap-3 px-5 pt-5">
+            <Image
+              src="/rausch-technik-logo.jpg"
+              alt="Rausch Technik"
+              width={1536}
+              height={1024}
+              className="h-9 w-auto"
+              priority
+            />
+
+            <div className="flex items-center gap-3">
+              <MeasurementGuideLink />
+              <LanguageSwitcher />
+            </div>
           </div>
 
           {children}
