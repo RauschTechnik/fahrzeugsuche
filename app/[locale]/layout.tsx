@@ -49,7 +49,7 @@ export default async function AppLayout({
               alt="Rausch Technik"
               width={1536}
               height={1024}
-              className="h-16 w-auto"
+              className="h-32 w-auto"
               priority
             />
 
