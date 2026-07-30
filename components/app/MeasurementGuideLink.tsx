@@ -18,8 +18,8 @@ export function MeasurementGuideLink() {
       href={MEASUREMENT_GUIDE_PATHS[locale] ?? MEASUREMENT_GUIDE_PATHS.de}
       target="_blank"
       rel="noopener noreferrer"
-      className="inline-flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-sm font-semibold text-key-500 hover:bg-gray-100">
-      <FileText className="size-4 flex-shrink-0" />
+      className="inline-flex items-center gap-2 rounded-lg px-3 py-2 text-base font-semibold text-key-500 hover:bg-gray-100">
+      <FileText className="size-5 flex-shrink-0" />
       {t('label')}
     </a>
   );

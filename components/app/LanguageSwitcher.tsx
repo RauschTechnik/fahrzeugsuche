@@ -17,14 +17,14 @@ export function LanguageSwitcher() {
   const pathname = usePathname();
 
   return (
-    <div className="inline-flex gap-1 rounded-lg bg-gray-100 p-1">
+    <div className="inline-flex gap-1 rounded-lg bg-gray-100 p-1.5">
       {routing.locales.map((value) => (
         <button
           key={value}
           type="button"
           onClick={() => router.replace(pathname, { locale: value })}
           className={cn(
-            'rounded-md px-2.5 py-1 text-sm font-semibold transition-colors',
+            'rounded-md px-3.5 py-2 text-base font-semibold transition-colors',
             value === locale ? 'bg-white text-key-500 shadow' : 'text-gray-500 hover:text-gray-700'
           )}>
           {LOCALE_LABELS[value]}
