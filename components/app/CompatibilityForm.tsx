@@ -435,7 +435,7 @@ export function CompatibilityForm({ isCheckDisabled, onCheckCompatibility, ...pr
                 href={LOADING_SPACE_LANDING_PAGES[activeLoadingSpace]}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-1 self-start text-sm font-semibold text-key-500 hover:underline">
+                className="mt-1 self-start text-lg font-semibold text-key-500 hover:underline">
                 {t('CompatibilityForm.loading-space-learn-more')}
               </a>
             </div>
