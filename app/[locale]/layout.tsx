@@ -10,6 +10,7 @@ import { LanguageSwitcher } from '@/components/app/LanguageSwitcher';
 import { MeasurementGuideLink } from '@/components/app/MeasurementGuideLink';
 import { routing } from '@/i18n/routing';
 import '@/assets/styles/globals.css';
+import Script from "next/script";
 
 const montserrat = Montserrat({
   variable: '--font-montserrat',
@@ -42,6 +43,16 @@ export default async function AppLayout({
   return (
     <html lang={locale}>
       <body className={`${montserrat.variable} font-montserrat antialiased`}>
+        <Script id="hotjar" strategy="afterInteractive">
+          {`(function(h,o,t,j,a,r){
+              h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+              h._hjSettings={hjid:6791070,hjsv:6};
+              a=o.getElementsByTagName('head')[0];
+              r=o.createElement('script');r.async=1;
+              r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+              a.appendChild(r);
+          })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');`}
+        </Script>
         <NextIntlClientProvider messages={messages}>
           <div className="container mx-auto flex items-center justify-between gap-3 px-5 pt-5">
             <Image
