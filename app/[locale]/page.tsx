@@ -56,7 +56,7 @@ export default function RootPage() {
   return (
     <div className={styles.app}>
       <div className={styles.app__header}>
-        <h1 className="mb-3 text-2xl md:mb-0 md:text-3xl">{t('title')}</h1>
+        <h1 className="mb-3 text-2xl md:mb-0 md:text-3xl">{`${t('title')} - ${t('subtitle')}`}</h1>
       </div>
 
       {isNoMatchesFound && (

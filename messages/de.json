@@ -38,6 +38,7 @@
   },
   "Wizard": {
     "title": "Fahrzeugsuche",
+    "subtitle": "Welche Fahrzeuge kommen für meinen Rollstuhl in Frage?",
     "back-to-results": "Zurück zu den Ergebnissen",
     "no-matches": {
       "title": "Keine passenden Fahrzeuge gefunden",

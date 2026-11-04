@@ -38,6 +38,7 @@
   },
   "Wizard": {
     "title": "Vehicle Search",
+    "subtitle": "Which vehicles are suitable for my wheelchair?",
     "back-to-results": "Back to results",
     "no-matches": {
       "title": "No matching vehicles found",

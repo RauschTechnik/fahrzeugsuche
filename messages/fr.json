@@ -38,6 +38,7 @@
   },
   "Wizard": {
     "title": "Recherche de véhicule",
+    "subtitle": "Quels véhicules conviennent à mon fauteuil roulant ?",
     "back-to-results": "Retour aux résultats",
     "no-matches": {
       "title": "Aucun véhicule correspondant trouvé",
