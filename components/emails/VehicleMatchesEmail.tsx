@@ -95,10 +95,17 @@ export default async function VehicleMatchesEmail({ firstName, lastName, matches
                             </Text>
                             <Text style={{ fontSize: 14, margin: '4px 0 0' }}>
                               <span style={{ color: gray, marginRight: 6 }}>{`${t('compatibility')}: `}</span>
-                              {option.showCheckWithSupportWarning ? (
+                              {option.showCheckWithSupportWarning || option.showDimensionsExceededWarning ? (
                                 <>
                                   <span style={{ color: '#eab308', marginRight: 6 }}>{'⚠'}</span>
-                                  <span>{t('check-with-support')}</span>
+                                  <span>
+                                    {[
+                                      option.showDimensionsExceededWarning && t('dimensions-slightly-exceeded'),
+                                      option.showCheckWithSupportWarning && t('check-with-support')
+                                    ]
+                                      .filter(Boolean)
+                                      .join(', ')}
+                                  </span>
                                 </>
                               ) : (
                                 <span

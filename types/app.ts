@@ -103,6 +103,7 @@ export type LoadingOptionMatch = {
   filterGroup: string;
   remainingSeats: string;
   showCheckWithSupportWarning: boolean;
+  showDimensionsExceededWarning: boolean;
   comment?: string | null;
 };
 

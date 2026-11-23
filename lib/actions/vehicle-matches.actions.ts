@@ -89,7 +89,8 @@ export async function getMatchingVehicles({
         label: entry.productLabel,
         filterGroup: entry.filterGroupLabel,
         remainingSeats: entry.remainingSeats,
-        showCheckWithSupportWarning: entry.isAdditionalVerificationNeeded || exceedsLength || exceedsWidth || exceedsHeight,
+        showCheckWithSupportWarning: entry.isAdditionalVerificationNeeded,
+        showDimensionsExceededWarning: exceedsLength || exceedsWidth || exceedsHeight,
         comment: entry.comment
       };
 
@@ -119,8 +120,10 @@ export async function getMatchingVehicles({
   }
 
   matches.sort((a, b) => {
-    const aHasClean = a.loadingOptions.some((option) => !option.showCheckWithSupportWarning);
-    const bHasClean = b.loadingOptions.some((option) => !option.showCheckWithSupportWarning);
+    const isClean = (option: (typeof a.loadingOptions)[number]) =>
+      !option.showCheckWithSupportWarning && !option.showDimensionsExceededWarning;
+    const aHasClean = a.loadingOptions.some(isClean);
+    const bHasClean = b.loadingOptions.some(isClean);
 
     if (aHasClean !== bHasClean) return Number(bHasClean) - Number(aHasClean);
     return b.loadingOptions.length - a.loadingOptions.length;

@@ -53,10 +53,17 @@ export function VehicleMatchCard({ match }: Props) {
 
                 <p className="flex items-center gap-1">
                   <span className="text-gray-500">{t('compatibility')}</span>
-                  {option.showCheckWithSupportWarning ? (
+                  {option.showCheckWithSupportWarning || option.showDimensionsExceededWarning ? (
                     <>
                       <Icon icon="triangle-exclamation" className="text-amber-500" />
-                      <span>{t('check-with-support')}</span>
+                      <span>
+                        {[
+                          option.showDimensionsExceededWarning && t('dimensions-slightly-exceeded'),
+                          option.showCheckWithSupportWarning && t('check-with-support')
+                        ]
+                          .filter(Boolean)
+                          .join(', ')}
+                      </span>
                     </>
                   ) : (
                     <Icon icon="circle-check" className="text-emerald-500" />
