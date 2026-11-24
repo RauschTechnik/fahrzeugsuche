@@ -13,14 +13,12 @@ import {
 
 // Remarks from the spreadsheet comments that are not shown for a product (the
 // rest of the comment stays). Products not listed here show their comment as is.
-const TRUNK_PHRASES_TO_HIDE = [
-  /mit hybridantrieb noch nicht verbaut oder geprüft/,
-  /ohne elektroantrieb/,
-  /ohne hybridantrieb/
-];
+const HYBRID_NOT_TESTED = /mit hybridantrieb noch nicht verbaut oder geprüft/;
+const TRUNK_PHRASES_TO_HIDE = [HYBRID_NOT_TESTED, /ohne elektroantrieb/, /ohne hybridantrieb/];
 const SIDE_PHRASES_TO_HIDE = [/auch mit hybridantrieb \(bitte angeben\)/, /auch vollelektrisch \(bitte angeben\)/];
 
 const PHRASES_TO_HIDE_BY_PRODUCT = new Map<string, Array<RegExp>>([
+  [PRODUCT_LABELS['LB-SH-MS'], [HYBRID_NOT_TESTED]],
   [PRODUCT_LABELS.LB, TRUNK_PHRASES_TO_HIDE],
   [PRODUCT_LABELS['LB-TEZ'], TRUNK_PHRASES_TO_HIDE],
   [PRODUCT_LABELS['LB-S'], TRUNK_PHRASES_TO_HIDE],
