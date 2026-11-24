@@ -2,7 +2,23 @@
 
 import { randomUUID } from 'crypto';
 import { prisma } from '@/lib/db';
-import { LOADING_SPACE_POSITIONS, LoadingPosition, VehicleMatch, VehicleMatchParams } from '@/types/app';
+import { stripDrivetrainNotes } from '@/lib/utils';
+import {
+  LOADING_SPACE_POSITIONS,
+  LoadingPosition,
+  PRODUCT_LABELS,
+  VehicleMatch,
+  VehicleMatchParams
+} from '@/types/app';
+
+// The regular Ladeboy trunk products don't show the drivetrain remarks from
+// the spreadsheet comments (the Klapprollstuhl and the S2 variants still do).
+const PRODUCTS_WITHOUT_DRIVETRAIN_NOTES = new Set([
+  PRODUCT_LABELS.LB,
+  PRODUCT_LABELS['LB-TEZ'],
+  PRODUCT_LABELS['LB-S'],
+  PRODUCT_LABELS['LB-S-UG']
+]);
 
 // A small tolerance is applied before excluding a car model outright - anything
 // within the tolerance is still returned, but flagged so the customer knows to
@@ -91,7 +107,9 @@ export async function getMatchingVehicles({
         remainingSeats: entry.remainingSeats,
         showCheckWithSupportWarning: entry.isAdditionalVerificationNeeded,
         showDimensionsExceededWarning: exceedsLength || exceedsWidth || exceedsHeight,
-        comment: entry.comment
+        comment: PRODUCTS_WITHOUT_DRIVETRAIN_NOTES.has(entry.productLabel)
+          ? stripDrivetrainNotes(entry.comment)
+          : entry.comment
       };
 
       const existing = vehiclesByCarModelId.get(entry.carModel.id);
