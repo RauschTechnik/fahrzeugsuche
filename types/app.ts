@@ -40,10 +40,10 @@ export const PRODUCT_LABELS: Record<string, string> = {
 };
 
 // Which filter checkbox a product falls under - equipment variants of the same
-// underlying loading method (e.g. "LB-TEZ" is "LB" with a telescoping arm,
-// "LB-S2-SM" is "LB-S2" with a swivel module) share their base product's
-// group instead of getting their own checkbox, so the filter list stays to
-// the actual distinct loading methods.
+// underlying loading method (e.g. "LB-TEZ" is "LB" with a telescoping arm)
+// share their base product's group instead of getting their own checkbox, so
+// the filter list stays to the actual distinct loading methods. The S2 with
+// swivel module ("LB-S2-SM") has its own checkbox.
 export const FILTER_GROUP_LABELS: Record<string, string> = {
   LB: PRODUCT_LABELS.LB,
   'LB-TEZ': PRODUCT_LABELS.LB,
@@ -52,7 +52,7 @@ export const FILTER_GROUP_LABELS: Record<string, string> = {
   'LB-S-UG': PRODUCT_LABELS['LB-S-UG'],
   'LB-S2': PRODUCT_LABELS['LB-S2'],
   'LB-S2-UG': PRODUCT_LABELS['LB-S2-UG'],
-  'LB-S2-SM': PRODUCT_LABELS['LB-S2'],
+  'LB-S2-SM': PRODUCT_LABELS['LB-S2-SM'],
   SC: PRODUCT_LABELS.SC
 };
 
