@@ -30,6 +30,20 @@ const PHRASES_TO_HIDE_BY_PRODUCT = new Map<string, Array<RegExp>>([
   [PRODUCT_LABELS['LB-S2-SM'], SIDE_PHRASES_TO_HIDE]
 ]);
 
+// The "Einschränkung: Bei Elektro- oder Hybridfahrzeugen ..." box belongs to
+// the vehicle, not to a product. It is dropped when every option shown for the
+// vehicle is one of the regular Ladeboy products (trunk and S2); the
+// Klapprollstuhl and the Scooterboy still show it.
+const PRODUCTS_WITHOUT_BATTERY_DISCLAIMER = new Set([
+  PRODUCT_LABELS.LB,
+  PRODUCT_LABELS['LB-TEZ'],
+  PRODUCT_LABELS['LB-S'],
+  PRODUCT_LABELS['LB-S-UG'],
+  PRODUCT_LABELS['LB-S2'],
+  PRODUCT_LABELS['LB-S2-UG'],
+  PRODUCT_LABELS['LB-S2-SM']
+]);
+
 // A small tolerance is applied before excluding a car model outright - anything
 // within the tolerance is still returned, but flagged so the customer knows to
 // double-check with support before ordering.
@@ -143,6 +157,10 @@ export async function getMatchingVehicles({
 
   for (const match of matches) {
     match.loadingOptions.sort((a, b) => ALL_POSITIONS.indexOf(a.position) - ALL_POSITIONS.indexOf(b.position));
+
+    if (match.loadingOptions.every((option) => PRODUCTS_WITHOUT_BATTERY_DISCLAIMER.has(option.label))) {
+      match.carModel = { ...match.carModel, hybridOrElectricDisclaimer: false };
+    }
   }
 
   matches.sort((a, b) => {
