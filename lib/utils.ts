@@ -5,22 +5,15 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-// Spreadsheet comments sometimes carry a drivetrain remark ("ohne
-// Elektroantrieb", "Mit Hybridantrieb noch nicht verbaut oder geprüft") in
-// front of other information. This drops just those sentences and keeps the
-// rest, or returns null when nothing else is left.
-const DRIVETRAIN_NOTES = [
-  /mit hybridantrieb noch nicht verbaut oder geprüft/gi,
-  /ohne elektroantrieb/gi,
-  /ohne hybridantrieb/gi
-];
-
-export function stripDrivetrainNotes(comment: string | null): string | null {
-  if (!comment) return comment;
+// Spreadsheet comments sometimes carry a remark that should not be shown
+// (e.g. "ohne Elektroantrieb") in front of other information. This drops just
+// those phrases and keeps the rest, or returns null when nothing else is left.
+export function stripCommentPhrases(comment: string | null, phrases: Array<RegExp>): string | null {
+  if (!comment || phrases.length === 0) return comment;
 
   let result = comment;
-  for (const note of DRIVETRAIN_NOTES) {
-    result = result.replace(new RegExp(`${note.source}(?:\\s*[.,;]\\s*)?`, note.flags), '');
+  for (const phrase of phrases) {
+    result = result.replace(new RegExp(`${phrase.source}(?:\\s*[.,;]\\s*)?`, 'gi'), '');
   }
 
   result = result

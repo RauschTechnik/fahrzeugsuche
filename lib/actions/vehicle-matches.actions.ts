@@ -2,7 +2,7 @@
 
 import { randomUUID } from 'crypto';
 import { prisma } from '@/lib/db';
-import { stripDrivetrainNotes } from '@/lib/utils';
+import { stripCommentPhrases } from '@/lib/utils';
 import {
   LOADING_SPACE_POSITIONS,
   LoadingPosition,
@@ -11,13 +11,23 @@ import {
   VehicleMatchParams
 } from '@/types/app';
 
-// The regular Ladeboy trunk products don't show the drivetrain remarks from
-// the spreadsheet comments (the Klapprollstuhl and the S2 variants still do).
-const PRODUCTS_WITHOUT_DRIVETRAIN_NOTES = new Set([
-  PRODUCT_LABELS.LB,
-  PRODUCT_LABELS['LB-TEZ'],
-  PRODUCT_LABELS['LB-S'],
-  PRODUCT_LABELS['LB-S-UG']
+// Remarks from the spreadsheet comments that are not shown for a product (the
+// rest of the comment stays). Products not listed here show their comment as is.
+const TRUNK_PHRASES_TO_HIDE = [
+  /mit hybridantrieb noch nicht verbaut oder geprüft/,
+  /ohne elektroantrieb/,
+  /ohne hybridantrieb/
+];
+const SIDE_PHRASES_TO_HIDE = [/auch mit hybridantrieb \(bitte angeben\)/, /auch vollelektrisch \(bitte angeben\)/];
+
+const PHRASES_TO_HIDE_BY_PRODUCT = new Map<string, Array<RegExp>>([
+  [PRODUCT_LABELS.LB, TRUNK_PHRASES_TO_HIDE],
+  [PRODUCT_LABELS['LB-TEZ'], TRUNK_PHRASES_TO_HIDE],
+  [PRODUCT_LABELS['LB-S'], TRUNK_PHRASES_TO_HIDE],
+  [PRODUCT_LABELS['LB-S-UG'], TRUNK_PHRASES_TO_HIDE],
+  [PRODUCT_LABELS['LB-S2'], SIDE_PHRASES_TO_HIDE],
+  [PRODUCT_LABELS['LB-S2-UG'], SIDE_PHRASES_TO_HIDE],
+  [PRODUCT_LABELS['LB-S2-SM'], SIDE_PHRASES_TO_HIDE]
 ]);
 
 // A small tolerance is applied before excluding a car model outright - anything
@@ -107,9 +117,7 @@ export async function getMatchingVehicles({
         remainingSeats: entry.remainingSeats,
         showCheckWithSupportWarning: entry.isAdditionalVerificationNeeded,
         showDimensionsExceededWarning: exceedsLength || exceedsWidth || exceedsHeight,
-        comment: PRODUCTS_WITHOUT_DRIVETRAIN_NOTES.has(entry.productLabel)
-          ? stripDrivetrainNotes(entry.comment)
-          : entry.comment
+        comment: stripCommentPhrases(entry.comment, PHRASES_TO_HIDE_BY_PRODUCT.get(entry.productLabel) ?? [])
       };
 
       const existing = vehiclesByCarModelId.get(entry.carModel.id);
