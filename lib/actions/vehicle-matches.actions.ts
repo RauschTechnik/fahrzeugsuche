@@ -32,9 +32,10 @@ const PHRASES_TO_HIDE_BY_PRODUCT = new Map<string, Array<RegExp>>([
 
 // The "Einschränkung: Bei Elektro- oder Hybridfahrzeugen ..." box belongs to
 // the vehicle, not to a product. It is dropped when every option shown for the
-// vehicle is one of the Ladeboy products (trunk, S2, Klapprollstuhl); the
-// Scooterboy still shows it.
+// vehicle is one of the known products - which is currently all of them, so
+// the box is effectively switched off.
 const PRODUCTS_WITHOUT_BATTERY_DISCLAIMER = new Set([
+  PRODUCT_LABELS.SC,
   PRODUCT_LABELS['LB-SH-MS'],
   PRODUCT_LABELS.LB,
   PRODUCT_LABELS['LB-TEZ'],
