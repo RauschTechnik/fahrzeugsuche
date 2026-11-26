@@ -32,6 +32,7 @@ export default function RootPage() {
       body: JSON.stringify({
         loadingSpace: values.loading_space,
         wheelchairType: values.wheelchair_type,
+        foldState: values.fold_state ?? null,
         isHeavyWc: values.is_heavy_wc,
         length: values.length ?? null,
         height: values.height ?? null,

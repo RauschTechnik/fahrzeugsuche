@@ -19,6 +19,12 @@ export enum LoadingSpace {
   Side = 'side'
 }
 
+// Whether a regular (cross-frame) wheelchair gets loaded folded or unfolded.
+export enum FoldState {
+  Folded = 'folded',
+  Unfolded = 'unfolded'
+}
+
 export const LOADING_SPACE_POSITIONS: Record<LoadingSpace, Array<LoadingPosition>> = {
   [LoadingSpace.Trunk]: [LoadingPosition.TrunkFolded, LoadingPosition.TrunkUnfolded],
   [LoadingSpace.Side]: [LoadingPosition.SideFolded, LoadingPosition.SideUnfolded]
@@ -79,6 +85,7 @@ export function translateProductLabel(t: (key: any) => string, label: string): s
 export type CompatibilityParams = {
   loading_space: LoadingSpace;
   wheelchair_type: WheelchairType;
+  fold_state?: FoldState;
   length?: number;
   width?: number;
   width_unfolded?: number;
@@ -90,6 +97,7 @@ export type CompatibilityParams = {
 export type VehicleMatchParams = {
   loadingSpace: LoadingSpace;
   wheelchairType: WheelchairType;
+  foldState?: FoldState | null;
   isHeavyWc: boolean;
   length?: number | null;
   height?: number | null;

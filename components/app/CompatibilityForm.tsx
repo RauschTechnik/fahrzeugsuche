@@ -1,10 +1,9 @@
 import { z } from 'zod';
-import { cn } from '@/lib/utils';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useTranslations } from 'next-intl';
 import { ComponentPropsWithoutRef, useEffect, useMemo, useState } from 'react';
-import { CompatibilityParams, LoadingSpace, WheelchairType } from '@/types/app';
+import { CompatibilityParams, FoldState, LoadingSpace, WheelchairType } from '@/types/app';
 import styles from '@/assets/styles/app.module.css';
 import { Icon } from '@/components/shared/Icon';
 import { Button } from '@/components/ui/button';
@@ -35,6 +34,11 @@ export function CompatibilityForm({ isCheckDisabled, onCheckCompatibility, ...pr
     { id: WheelchairType.Scooter, label: t('WheelchairType.scooter') }
   ];
 
+  const foldStates = [
+    { id: FoldState.Folded, label: t('FoldState.folded') },
+    { id: FoldState.Unfolded, label: t('FoldState.unfolded') }
+  ];
+
   const loadingSpaces = [
     { id: LoadingSpace.Trunk, label: t('LoadingSpace.trunk') },
     { id: LoadingSpace.Side, label: t('LoadingSpace.side') }
@@ -44,13 +48,19 @@ export function CompatibilityForm({ isCheckDisabled, onCheckCompatibility, ...pr
 
   const [activeLoadingSpace, setActiveLoadingSpace] = useState<LoadingSpace>(LoadingSpace.Trunk);
 
+  const [activeFoldState, setActiveFoldState] = useState<FoldState>(FoldState.Folded);
+
   const fieldsVisibilityStates = useMemo(() => {
     return {
       isRegular: activeWheelchairType === WheelchairType.Regular,
       isCompressible: activeWheelchairType === WheelchairType.Compressible,
-      isScooter: activeWheelchairType === WheelchairType.Scooter
+      isScooter: activeWheelchairType === WheelchairType.Scooter,
+      // Only regular wheelchairs choose between folded and unfolded, and only
+      // the width that belongs to that choice is asked for.
+      isRegularFolded: activeWheelchairType === WheelchairType.Regular && activeFoldState === FoldState.Folded,
+      isRegularUnfolded: activeWheelchairType === WheelchairType.Regular && activeFoldState === FoldState.Unfolded
     };
-  }, [activeWheelchairType]);
+  }, [activeWheelchairType, activeFoldState]);
 
   // Compressible wheelchairs and scooters are only ever loaded in the trunk -
   // lock the choice to that as soon as one of those types is selected.
@@ -61,10 +71,6 @@ export function CompatibilityForm({ isCheckDisabled, onCheckCompatibility, ...pr
       setActiveLoadingSpace(LoadingSpace.Trunk);
     }
   }, [isLoadingSpaceLocked]);
-
-  const fieldsWidthClassName = useMemo(() => {
-    return cn(fieldsVisibilityStates.isRegular ? 'md:w-1/4' : 'md:w-1/3');
-  }, [fieldsVisibilityStates]);
 
   const formSchema = z.object({
     length: fieldsVisibilityStates.isCompressible
@@ -81,14 +87,14 @@ export function CompatibilityForm({ isCheckDisabled, onCheckCompatibility, ...pr
           .min(20, t('Validations.width.min', { value: 20 }))
           .max(200, t('Validations.width.max', { value: 200 }))
       : z.any(),
-    width_unfolded: fieldsVisibilityStates.isRegular
+    width_unfolded: fieldsVisibilityStates.isRegularUnfolded
       ? z.coerce
           .number()
           .int(t('Validations.width-unfolded.integer'))
           .min(20, t('Validations.width-unfolded.min', { value: 20 }))
           .max(200, t('Validations.width-unfolded.max', { value: 200 }))
       : z.any(),
-    width_folded: fieldsVisibilityStates.isRegular
+    width_folded: fieldsVisibilityStates.isRegularFolded
       ? z.coerce
           .number()
           .int(t('Validations.width-folded.integer'))
@@ -119,10 +125,11 @@ export function CompatibilityForm({ isCheckDisabled, onCheckCompatibility, ...pr
     onCheckCompatibility({
       loading_space: activeLoadingSpace,
       wheelchair_type: activeWheelchairType,
+      fold_state: fieldsVisibilityStates.isRegular ? activeFoldState : undefined,
       length: values.length,
       width: fieldsVisibilityStates.isCompressible || fieldsVisibilityStates.isScooter ? values.width : undefined,
-      width_unfolded: fieldsVisibilityStates.isRegular ? values.width_unfolded : undefined,
-      width_folded: fieldsVisibilityStates.isRegular ? values.width_folded : undefined,
+      width_unfolded: fieldsVisibilityStates.isRegularUnfolded ? values.width_unfolded : undefined,
+      width_folded: fieldsVisibilityStates.isRegularFolded ? values.width_folded : undefined,
       height: values.height,
       // Scooters are always stored as heavy in the vehicle data - there is no
       // lighter category to distinguish, so this is never user-chosen.
@@ -166,13 +173,33 @@ export function CompatibilityForm({ isCheckDisabled, onCheckCompatibility, ...pr
             </div>
           </div>
 
+          {fieldsVisibilityStates.isRegular && (
+            <div className={styles.app__form_body}>
+              <div className={'flex flex-col gap-2 md:w-1/2 md:gap-1'}>
+                <Label>{t('CompatibilityForm.fold-state')}</Label>
+
+                <Tabs value={activeFoldState} onValueChange={(value) => setActiveFoldState(value as FoldState)}>
+                  <TabsList className={styles.app__form_tablist}>
+                    {foldStates.map((foldState) => (
+                      <TabsTrigger key={foldState.id} value={foldState.id} className={styles.app__form_tabtrigger}>
+                        {foldState.label}
+                      </TabsTrigger>
+                    ))}
+                  </TabsList>
+                </Tabs>
+
+                <p className="text-base text-black">{t('CompatibilityForm.fold-state-hint')}</p>
+              </div>
+            </div>
+          )}
+
           {!fieldsVisibilityStates.isCompressible && (
             <div className={styles.app__form_body}>
               <FormField
                 control={form.control}
                 name="length"
                 render={({ field }) => (
-                  <FormItem className={fieldsWidthClassName}>
+                  <FormItem className={'md:w-1/3'}>
                     <FormControl>
                       <TooltipProvider>
                         <Tooltip delayDuration={300}>
@@ -225,7 +252,7 @@ export function CompatibilityForm({ isCheckDisabled, onCheckCompatibility, ...pr
                   control={form.control}
                   name="width"
                   render={({ field }) => (
-                    <FormItem className={fieldsWidthClassName}>
+                    <FormItem className={'md:w-1/3'}>
                       <FormControl>
                         <TooltipProvider>
                           <Tooltip delayDuration={300}>
@@ -263,12 +290,12 @@ export function CompatibilityForm({ isCheckDisabled, onCheckCompatibility, ...pr
                 />
               )}
 
-              {fieldsVisibilityStates.isRegular && (
+              {fieldsVisibilityStates.isRegularUnfolded && (
                 <FormField
                   control={form.control}
                   name="width_unfolded"
                   render={({ field }) => (
-                    <FormItem className={fieldsWidthClassName}>
+                    <FormItem className={'md:w-1/3'}>
                       <FormControl>
                         <TooltipProvider>
                           <Tooltip delayDuration={300}>
@@ -304,12 +331,12 @@ export function CompatibilityForm({ isCheckDisabled, onCheckCompatibility, ...pr
                 />
               )}
 
-              {fieldsVisibilityStates.isRegular && (
+              {fieldsVisibilityStates.isRegularFolded && (
                 <FormField
                   control={form.control}
                   name="width_folded"
                   render={({ field }) => (
-                    <FormItem className={fieldsWidthClassName}>
+                    <FormItem className={'md:w-1/3'}>
                       <FormControl>
                         <TooltipProvider>
                           <Tooltip delayDuration={300}>
@@ -349,7 +376,7 @@ export function CompatibilityForm({ isCheckDisabled, onCheckCompatibility, ...pr
                 control={form.control}
                 name="height"
                 render={({ field }) => (
-                  <FormItem className={fieldsWidthClassName}>
+                  <FormItem className={'md:w-1/3'}>
                     <FormControl>
                       <TooltipProvider>
                         <Tooltip delayDuration={300}>

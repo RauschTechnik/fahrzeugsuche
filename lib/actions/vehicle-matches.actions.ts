@@ -4,6 +4,7 @@ import { randomUUID } from 'crypto';
 import { prisma } from '@/lib/db';
 import { stripCommentPhrases } from '@/lib/utils';
 import {
+  FoldState,
   LOADING_SPACE_POSITIONS,
   LoadingPosition,
   PRODUCT_LABELS,
@@ -66,6 +67,7 @@ const isFoldedPosition = (position: LoadingPosition) =>
 export async function getMatchingVehicles({
   loadingSpace,
   wheelchairType,
+  foldState,
   isHeavyWc,
   length,
   width,
@@ -74,7 +76,12 @@ export async function getMatchingVehicles({
 }: VehicleMatchParams): Promise<Array<VehicleMatch>> {
   const vehiclesByCarModelId = new Map<number, VehicleMatch>();
 
-  for (const position of LOADING_SPACE_POSITIONS[loadingSpace]) {
+  // A chosen fold state limits the search to the matching loading positions.
+  const positions = LOADING_SPACE_POSITIONS[loadingSpace].filter(
+    (position) => !foldState || isFoldedPosition(position) === (foldState === FoldState.Folded)
+  );
+
+  for (const position of positions) {
     const relevantWidth = isFoldedPosition(position) ? (width ?? widthUnfolded) : (widthUnfolded ?? width);
 
     const dimensionFilters = [];

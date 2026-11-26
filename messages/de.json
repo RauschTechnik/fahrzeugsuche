@@ -65,7 +65,7 @@
     "width": "Breite, cm",
     "scooter-width-hint": "Standardmässig sind bis zu 82cm Breite möglich",
     "width-unfolded": "Breite ungefaltet, cm",
-    "width-unfolded-description": "Die ungefaltete Breite ist nur von Belang, wenn Sie Ihren Rollstuhl ungefaltet verladen möchten. Falls Sie nur gefaltet verladen möchten, können Sie dort einfach 20 cm eintragen.",
+    "width-unfolded-description": "Messen Sie die Breite des geöffneten Rollstuhls.",
     "width-unfolded-measurement-sheet-ref": "Gemäß Maßblatt Nr. 6",
     "width-folded": "Breite gefaltet, cm",
     "width-folded-description": "Standardmäßig gilt bei uns ein Faltmaß von 35 cm. Falls Sie keine Verlademöglichkeiten sehen, tippen Sie hier 35 cm ein – wir können dann gemeinsam besprechen, wie wir das Faltmaß Ihres Rollstuhls reduzieren können bzw. ob es auch mit einem höheren Faltmaß funktioniert.",
@@ -76,7 +76,9 @@
     "loading-space-locked-hint": "Bei diesem Rollstuhltyp ist nur die Verladung im Kofferraum möglich.",
     "loading-space-locked-hint-compressible": "Bei diesem Rollstuhltyp ist grundsätzlich nur die Verladung im Kofferraum möglich. Für ausgewählte Modelle ist auch die seitliche Verladung möglich. Kontaktieren Sie uns hierfür gerne telefonisch oder über das Kontaktformular auf unserer Website.",
     "loading-space-learn-more": "Welcher Ladeboy passt zu mir?",
-    "submit": "Passende Fahrzeuge finden"
+    "submit": "Passende Fahrzeuge finden",
+    "fold-state": "Verladeart",
+    "fold-state-hint": "Soll der Rollstuhl gefaltet oder ungefaltet verladen werden? Danach richtet sich, welche Breite wir brauchen und welche Lösungen in Frage kommen."
   },
   "WheelchairTypesExplanationDialog": {
     "title": "Erklärung der Rollstuhltypen",
@@ -107,7 +109,12 @@
     "width-folded": "Breite gefaltet",
     "height": "Höhe",
     "modify-parameters": "Parameter ändern",
-    "centimetre": "cm"
+    "centimetre": "cm",
+    "fold-state": "Verladeart",
+    "fold-state-values": {
+      "folded": "Gefaltet",
+      "unfolded": "Ungefaltet"
+    }
   },
   "VehicleMatches": {
     "filter-title": "Nach Verlademöglichkeit filtern",
@@ -166,5 +173,9 @@
     "LB-S2-UG": "Ladeboy S2 ungefaltet hinter dem Fahrersitz",
     "LB-S2-SM": "Ladeboy S2 gefaltet hinter dem Fahrersitz mit Schwenkmodul",
     "SC": "Scooterboy im Kofferraum"
+  },
+  "FoldState": {
+    "folded": "Gefaltet",
+    "unfolded": "Ungefaltet"
   }
 }

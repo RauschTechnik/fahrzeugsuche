@@ -65,7 +65,7 @@
     "width": "Width, cm",
     "scooter-width-hint": "Up to 82cm width possible as standard",
     "width-unfolded": "Width unfolded, cm",
-    "width-unfolded-description": "The unfolded width only matters if you want to load your wheelchair unfolded. If you only want to load it folded, you can simply enter 20 cm there.",
+    "width-unfolded-description": "Measure the width of the opened wheelchair.",
     "width-unfolded-measurement-sheet-ref": "See measurement guide no. 6",
     "width-folded": "Width folded, cm",
     "width-folded-description": "By default we assume a folded width of 35 cm. If you don't see any loading options, enter 35 cm here – we can then discuss together how we can reduce the folded width of your wheelchair, or whether it also works with a larger folded width.",
@@ -76,7 +76,9 @@
     "loading-space-locked-hint": "For this wheelchair type, only loading in the trunk is possible.",
     "loading-space-locked-hint-compressible": "For this wheelchair type, only loading in the trunk is generally possible. For selected models, side loading is also possible. Feel free to contact us by phone or via the contact form on our website for this.",
     "loading-space-learn-more": "Which Ladeboy suits me?",
-    "submit": "Find matching vehicles"
+    "submit": "Find matching vehicles",
+    "fold-state": "Folded or unfolded",
+    "fold-state-hint": "Should the wheelchair be loaded folded or unfolded? This determines which width we need and which solutions are possible."
   },
   "WheelchairTypesExplanationDialog": {
     "title": "Explanation of wheelchair types",
@@ -107,7 +109,12 @@
     "width-folded": "Width folded",
     "height": "Height",
     "modify-parameters": "Change parameters",
-    "centimetre": "cm"
+    "centimetre": "cm",
+    "fold-state": "Folded or unfolded",
+    "fold-state-values": {
+      "folded": "Folded",
+      "unfolded": "Unfolded"
+    }
   },
   "VehicleMatches": {
     "filter-title": "Filter by loading method",
@@ -166,5 +173,9 @@
     "LB-S2-UG": "Ladeboy S2 unfolded behind the driver's seat",
     "LB-S2-SM": "Ladeboy S2 folded behind the driver's seat with swivel module",
     "SC": "Scooterboy in the trunk"
+  },
+  "FoldState": {
+    "folded": "Folded",
+    "unfolded": "Unfolded"
   }
 }

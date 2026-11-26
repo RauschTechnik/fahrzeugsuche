@@ -65,7 +65,7 @@
     "width": "Largeur, cm",
     "scooter-width-hint": "En général, jusqu'à 82cm de largeur possible",
     "width-unfolded": "Largeur dépliée, cm",
-    "width-unfolded-description": "La largeur dépliée n'est pertinente que si vous souhaitez charger votre fauteuil roulant déplié. Si vous souhaitez le charger uniquement plié, vous pouvez simplement indiquer 20 cm.",
+    "width-unfolded-description": "Mesurez la largeur du fauteuil roulant ouvert.",
     "width-unfolded-measurement-sheet-ref": "Voir fiche de mesure n° 6",
     "width-folded": "Largeur pliée, cm",
     "width-folded-description": "Par défaut, nous appliquons une largeur pliée de 35 cm. Si vous ne voyez aucune option de chargement, indiquez 35 cm ici – nous pourrons alors voir ensemble comment réduire la largeur pliée de votre fauteuil, ou si cela fonctionne aussi avec une largeur pliée plus grande.",
@@ -76,7 +76,9 @@
     "loading-space-locked-hint": "Pour ce type de fauteuil roulant, seul le chargement dans le coffre est possible.",
     "loading-space-locked-hint-compressible": "Pour ce type de fauteuil roulant, seul le chargement dans le coffre est généralement possible. Pour certains modèles sélectionnés, le chargement latéral est également possible. N'hésitez pas à nous contacter par téléphone ou via le formulaire de contact sur notre site pour cela.",
     "loading-space-learn-more": "Quel Ladeboy me convient ?",
-    "submit": "Trouver les véhicules correspondants"
+    "submit": "Trouver les véhicules correspondants",
+    "fold-state": "Plié ou déplié",
+    "fold-state-hint": "Le fauteuil roulant doit-il être chargé plié ou déplié ? Cela détermine la largeur dont nous avons besoin et les solutions possibles."
   },
   "WheelchairTypesExplanationDialog": {
     "title": "Explication des types de fauteuils roulants",
@@ -107,7 +109,12 @@
     "width-folded": "Largeur pliée",
     "height": "Hauteur",
     "modify-parameters": "Modifier les paramètres",
-    "centimetre": "cm"
+    "centimetre": "cm",
+    "fold-state": "Plié ou déplié",
+    "fold-state-values": {
+      "folded": "Plié",
+      "unfolded": "Déplié"
+    }
   },
   "VehicleMatches": {
     "filter-title": "Filtrer par méthode de chargement",
@@ -166,5 +173,9 @@
     "LB-S2-UG": "Ladeboy S2 déplié derrière le siège conducteur",
     "LB-S2-SM": "Ladeboy S2 plié derrière le siège conducteur avec module pivotant",
     "SC": "Scooterboy dans le coffre"
+  },
+  "FoldState": {
+    "folded": "Plié",
+    "unfolded": "Déplié"
   }
 }

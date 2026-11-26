@@ -21,7 +21,17 @@ export function CompatibilityParamsSummary({ compatibilityParams, onModifyParams
       </div>
 
       <div className={styles.app__result_params_item}>
-        <p className={styles.app__result_params_value}>{t(`loading-space-values.${compatibilityParams.loading_space}`)}</p>
+        <p className={styles.app__result_params_value}>
+          {t(`loading-space-values.${compatibilityParams.loading_space}`)}
+        </p>
+        {!!compatibilityParams.fold_state && (
+          <div className="mt-3">
+            <h5 className={styles.app__result_params_key}>{t('fold-state')}</h5>
+            <p className={styles.app__result_params_value}>
+              {t(`fold-state-values.${compatibilityParams.fold_state}`)}
+            </p>
+          </div>
+        )}
       </div>
 
       <div className={styles.app__result_params_header}>
